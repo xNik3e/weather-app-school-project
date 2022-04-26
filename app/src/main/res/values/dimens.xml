@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="control_image_standard">48dp</dimen>
+    <dimen name="control_padding_space1">4dp</dimen>
+    <dimen name="control_padding_space2">9dp</dimen>
+    <dimen name="control_padding_space3">12dp</dimen>
+    <dimen name="control_padding_space4">24dp</dimen>
+    <dimen name="control_padding_space5">27dp</dimen>
+    <dimen name="control_padding_space6">36dp</dimen>
+    <dimen name="control_icon_size_button">24dp</dimen>
+    <dimen name="control_text_size_title">19sp</dimen>
+    <dimen name="control_text_size_body1">13sp</dimen>
+    <dimen name="control_text_size_button">13sp</dimen>
+    <dimen name="control_margin1">9dp</dimen>
+    <dimen name="control_margin2">18dp</dimen>
+    <dimen name="control_margin3">24dp</dimen>
+    <dimen name="control_margin4">64dp</dimen>
+
+
+</resources>

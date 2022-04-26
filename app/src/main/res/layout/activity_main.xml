@@ -1,18 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/current_weather_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_marginTop="@dimen/control_padding_space2"
+            android:background="@android:color/transparent"
+            android:paddingStart="14dp"
+            app:contentInsetEnd="0dp"
+            app:contentInsetStart="0dp">
+
+            <FrameLayout
+                android:id="@+id/toolbar_icon_container"
+                android:layout_width="@dimen/control_image_standard"
+                android:layout_height="@dimen/control_image_standard"
+                android:layout_marginEnd="@dimen/control_padding_space2">
+
+                <ImageView
+                    android:id="@+id/ic_gps"
+                    android:layout_width="@dimen/control_icon_size_button"
+                    android:layout_height="@dimen/control_icon_size_button"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_gps"
+                    android:visibility="visible" />
+            </FrameLayout>
+
+            <Space
+                android:id="@+id/title_spacing"
+                android:layout_width="10dp"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="@string/current_location"
+                    android:textAppearance="@style/control_text_style_title"
+                    android:textColor="@color/title_color_dark" />
+
+                <TextView
+                    android:id="@+id/toolbar_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:text="@string/updated_fail"
+                    android:textAppearance="@style/control_text_body1"
+                    android:textColor="@color/body_color_dark" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="88dp"
+                android:layout_height="48dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/control_padding_space1"
+                android:orientation="horizontal"
+                android:weightSum="88">
+
+                <TextView
+                    android:id="@+id/city_select"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/control_image_standard"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="48"
+                    android:gravity="center|fill_horizontal"
+                    android:paddingLeft="@dimen/control_padding_space3"
+                    app:drawableLeftCompat="@drawable/ic_city_wrapper" />
+
+                <ImageView
+                    android:id="@+id/menu_more"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="44"
+                    android:padding="@dimen/control_padding_space2"
+                    android:src="@drawable/ic_menu" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+        <RelativeLayout
+            android:id="@+id/gps_tip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:background="#4d000000">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/control_margin2"
+                android:layout_marginTop="@dimen/control_margin2"
+                android:layout_marginBottom="@dimen/control_margin2"
+                android:maxWidth="250dp"
+                android:text="@string/message_gps_off"
+                android:textAppearance="@style/control_text_body1"
+                android:textColor="@color/text_primary_dark" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_gps_settings"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/control_margin2"
+                android:layout_marginEnd="@dimen/control_margin2"
+                android:background="?android:attr/selectableItemBackground"
+                android:onClick="openGPSSettings"
+                android:textAppearance="@style/control_text_style_title"
+                android:text="@string/title_settings"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
