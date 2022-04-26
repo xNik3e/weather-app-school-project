@@ -37,7 +37,19 @@
         android:id="@+id/forecast_daily_weather_icon"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/control_margin1"
-        tools:src="@drawable/ic_menu"/>
+        tools:src="@drawable/ic_downpour"/>
+
+    <com.example.weatherapp.utils.AlwaysMarqueeTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/forecast_daily_weather_description"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="@string/nothing"
+        android:textAppearance="@style/control_text_body1"
+        android:textColor="@color/text_primary_dark"/>
 
 
 </LinearLayout>
