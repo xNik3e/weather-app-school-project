@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Weather App</string>
+    <string name="current_location">Current Location</string>
+    <string name="control_font_family_toolbar">sans-serif-medium</string>
+    <string name="updated">updated at %1$s</string>
+    <string name="updated_days_ago">Updated 1 day ago</string>
+    <string name="updated_fail">Update failed, please try again later</string>
+    <string name="updated_hours_ago">Updated %1$s hours ago</string>
+    <string name="updated_mins_ago">Updated %1$s mins ago</string>
+    <string name="message_gps_off">The GPS signal is unavailable. Please turn Location on.</string>
+    <string name="title_settings">Settings</string>
 </resources>
