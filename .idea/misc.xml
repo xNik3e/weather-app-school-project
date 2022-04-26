@@ -3,11 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_arrow.xml" value="0.232" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_cit.xml" value="0.232" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_clear.xml" value="0.232" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_cloudy.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_downpour.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_drizzle.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_fog.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_hail.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_haze.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_hurricane.xml" value="0.196" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_menu.xml" value="0.232" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_rain.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_rainstorm.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_sandstorm.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_shower.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_sleet.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_snow.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_snowstorm.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_sunny_intervals.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_sunny_night.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_sunrise.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_sunset.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable-v24/ic_thundershower.xml" value="0.196" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_city.xml" value="0.232" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_city_wrapper.xml" value="0.232" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ic_gps.xml" value="0.232" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/forecast_daily_weather.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_forecast_weather.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/weather_info_layout.xml" value="0.2972972972972973" />
       </map>
     </option>
   </component>

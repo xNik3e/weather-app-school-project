@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/black">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/relative_layout_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:saveEnabled="false">
+
+            <ScrollView
+                android:id="@+id/weather_scroll_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusableInTouchMode="true"
+                    android:orientation="vertical">
+
+                    <Space
+                        android:id="@+id/blank_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                    <LinearLayout
+                        android:id="@+id/realtime_temperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/current_temperature"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/control_margin3"
+                            android:layout_marginEnd="@dimen/control_margin3"
+                            android:text="@string/nothing"
+                            android:textAppearance="@style/control_text_display"
+                            android:textColor="@color/text_primary_dark" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/control_margin4"
+                            android:layout_marginEnd="@dimen/control_margin4"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <com.example.weatherapp.utils.AlwaysMarqueeTextView
+                                android:id="@+id/current_weather_type"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ellipsize="marquee"
+                                android:marqueeRepeatLimit="marquee_forever"
+                                android:maxWidth="150dp"
+                                android:scrollHorizontally="true"
+                                android:singleLine="true"
+                                android:textAppearance="@style/control_text_under_display"
+                                android:textColor="@color/text_primary_dark"
+                                android:text="@string/nothing"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/current_high_temperature"
+                                android:layout_marginStart="@dimen/control_margin1"
+                                android:text="@string/nothing"
+                                android:textAppearance="@style/control_text_under_display"
+                                android:textColor="@color/text_primary_dark"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/control_padding_space1"
+                                android:text="@string/slash"
+                                android:textAppearance="@style/control_text_under_display"
+                                android:textColor="@color/text_primary_dark"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/current_low_temperature"
+                                android:layout_marginStart="@dimen/control_padding_space1"
+                                android:text="@string/nothing"
+                                android:textAppearance="@style/control_text_under_display"
+                                android:textColor="@color/text_primary_dark"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/forecast_weather"
+                        android:minHeight="117dp"
+                        android:paddingStart="@dimen/control_padding_space3"
+                        android:paddingTop="@dimen/control_padding_space5"
+                        android:paddingEnd="@dimen/control_padding_space3"
+                        android:paddingBottom="8dp"/>
+                </LinearLayout>
+
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>

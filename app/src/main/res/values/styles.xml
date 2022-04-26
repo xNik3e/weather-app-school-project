@@ -14,6 +14,19 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="control_text_display">
+        <item name="android:textSize">@dimen/control_text_size_display</item>
+        <item name="android:fontFamily">@string/control_font_family_display</item>
+    </style>
+
+    <style name="control_text_under_display">
+        <item name="android:textSize">@dimen/control_text_size_under_display</item>
+        <item name="android:lineSpacingMultiplier">1.03</item>
+        <item name="android:fontFamily">@string/control_font_family_toolbar</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+
     <style name="control_text_button">
         <item name="android:textSize">@dimen/control_text_size_button</item>
         <item name="android:fontFamily">@string/control_font_family_toolbar</item>
