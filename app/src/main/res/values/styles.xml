@@ -7,6 +7,12 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="control_text_style_subtitle">
+        <item name="android:textSize">@dimen/control_text_size_subtitle</item>
+        <item name="android:fontFamily">@string/control_font_family_toolbar</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
     <style name="control_text_body1">
         <item name="android:textSize">@dimen/control_text_size_body1</item>
         <item name="android:lineSpacingMultiplier">1.03</item>

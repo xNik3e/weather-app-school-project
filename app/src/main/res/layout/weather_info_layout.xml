@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/black">
+    >
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
@@ -71,18 +71,18 @@
                                 android:maxWidth="150dp"
                                 android:scrollHorizontally="true"
                                 android:singleLine="true"
+                                android:text="@string/nothing"
                                 android:textAppearance="@style/control_text_under_display"
-                                android:textColor="@color/text_primary_dark"
-                                android:text="@string/nothing"/>
+                                android:textColor="@color/text_primary_dark" />
 
                             <TextView
+                                android:id="@+id/current_high_temperature"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/current_high_temperature"
                                 android:layout_marginStart="@dimen/control_margin1"
                                 android:text="@string/nothing"
                                 android:textAppearance="@style/control_text_under_display"
-                                android:textColor="@color/text_primary_dark"/>
+                                android:textColor="@color/text_primary_dark" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -90,34 +90,99 @@
                                 android:layout_marginStart="@dimen/control_padding_space1"
                                 android:text="@string/slash"
                                 android:textAppearance="@style/control_text_under_display"
-                                android:textColor="@color/text_primary_dark"/>
+                                android:textColor="@color/text_primary_dark" />
 
                             <TextView
+                                android:id="@+id/current_low_temperature"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/current_low_temperature"
                                 android:layout_marginStart="@dimen/control_padding_space1"
                                 android:text="@string/nothing"
                                 android:textAppearance="@style/control_text_under_display"
-                                android:textColor="@color/text_primary_dark"/>
+                                android:textColor="@color/text_primary_dark" />
                         </LinearLayout>
                     </LinearLayout>
+
                     <FrameLayout
+                        android:id="@+id/forecast_weather"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/forecast_weather"
                         android:minHeight="117dp"
                         android:paddingStart="@dimen/control_padding_space3"
                         android:paddingTop="@dimen/control_padding_space5"
                         android:paddingEnd="@dimen/control_padding_space3"
-                        android:paddingBottom="8dp"/>
+                        android:paddingBottom="8dp" />
+
+                    <LinearLayout
+                        android:id="@+id/weather_temp_view_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="168dp"
+                        android:clipToPadding="false"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/control_padding_space3"
+                        android:paddingBottom="@dimen/control_padding_space3">
+
+                        <com.example.weatherapp.utils.MyWeatherTemperatureView
+                            android:id="@+id/weather_temp_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingStart="@dimen/weather_page_padding"
+                            android:paddingEnd="@dimen/weather_page_padding" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/fifteen_day_forecast_box"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/control_padding_space4"
+                        android:paddingBottom="@dimen/control_padding_space4">
+
+                        <TextView
+                            android:id="@+id/fifteen_day_forecast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="32dp"
+                            android:layout_gravity="center_horizontal"
+                            android:background="@drawable/ripple_mask"
+                            android:fontFamily="@string/control_font_family_toolbar"
+                            android:foreground="@drawable/background_transparent"
+                            android:gravity="center"
+                            android:onClick="openWebsite"
+                            android:paddingStart="@dimen/control_padding_space4"
+                            android:paddingEnd="@dimen/control_padding_space4"
+                            android:text="@string/fifteen_day_forecast"
+                            android:textAllCaps="true"
+                            android:textColor="@color/text_secondary_dark"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:id="@+id/forecast_upper_divider"
+                        android:layout_height="2px"
+                        android:background="@color/divider" />
+
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/hourly_forecast"
+                        android:paddingStart="@dimen/weather_page_padding"
+                        android:paddingEnd="@dimen/weather_page_padding"
+                        android:paddingTop="14dp"
+                        android:paddingBottom="14dp"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:id="@+id/forecast_bottom_divider"
+                        android:layout_height="2px"
+                        android:background="@color/divider" />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/realtime_weather_detail"/>
                 </LinearLayout>
 
-
             </ScrollView>
-
         </RelativeLayout>
-
-
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>
