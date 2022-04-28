@@ -28,6 +28,13 @@ android {
 }
 
 dependencies {
+    //swipe refresh layout
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    //fragments
+    def fragment_version = "1.4.1"
+    implementation "androidx.fragment:fragment:$fragment_version"
+
 
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'

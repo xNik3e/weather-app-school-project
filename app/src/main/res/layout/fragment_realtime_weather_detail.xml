@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/weather_page_padding2"
+    android:paddingTop="@dimen/control_padding_space2"
+    android:paddingEnd="@dimen/weather_page_padding2"
+    tools:context=".fragments.RealtimeWeatherDetail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/control_list_item_height_two_line"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_precipitation_probability"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/single_precipitationprobability" />
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_precipitation"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/single_precipitation" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/control_list_item_height_two_line"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_wind_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_bodytemp_view"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/body_temp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/control_list_item_height_two_line"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_hum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/single_humidity" />
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_visibility"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/single_visibility" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/control_list_item_height_two_line"
+        android:orientation="horizontal">
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_uv"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/single_uv" />
+
+        <com.example.weatherapp.utils.WeatherSingleInfoView
+            android:id="@+id/single_pressure"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:weatherType="@string/single_pressure" />
+    </LinearLayout>
+
+</LinearLayout>

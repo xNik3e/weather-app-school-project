@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="weatherIcon" format="reference">
+    </attr>
+    <attr name="weatherLevel" format="string">
+    </attr>
+    <attr name="weatherType" format="string">
+    </attr>
+</resources>
