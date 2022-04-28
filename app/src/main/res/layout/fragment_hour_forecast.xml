@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:saveEnabled="false"
     android:id="@+id/relative_layout"
-    tools:context=".fragments.hour_forecast">
+    tools:context=".fragments.HourForecast">
 
    <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"

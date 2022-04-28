@@ -10,9 +10,10 @@ import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
 
-public class realtime_weather_detail extends Fragment {
 
-    public realtime_weather_detail() {
+public class ForecastWeather extends Fragment {
+
+    public ForecastWeather() {
         // Required empty public constructor
     }
 
@@ -20,6 +21,6 @@ public class realtime_weather_detail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_realtime_weather_detail, container, false);
+        return inflater.inflate(R.layout.fragment_forecast_weather, container, false);
     }
 }

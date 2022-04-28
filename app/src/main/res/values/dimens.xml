@@ -19,6 +19,7 @@
     <dimen name="control_margin3">24dp</dimen>
     <dimen name="control_margin4">27dp</dimen>
     <dimen name="control_margin5">64dp</dimen>
+    <dimen name="fab_standard_size">64dp</dimen>
     <dimen name="temperature_text_point_space">7dp</dimen>
     <dimen name="weather_page_padding">11dp</dimen>
     <dimen name="weather_page_padding2">14dp</dimen>

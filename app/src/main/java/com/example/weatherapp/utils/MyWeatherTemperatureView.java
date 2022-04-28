@@ -117,19 +117,19 @@ public class MyWeatherTemperatureView extends View {
 
     private void fillDummy() {
         ArrayList<Integer> dayTemperature = new ArrayList<>(9);
-        dayTemperature.add(15);
+        dayTemperature.add(29);
+        dayTemperature.add(28);
+        dayTemperature.add(22);
         dayTemperature.add(28);
         dayTemperature.add(27);
-        dayTemperature.add(32);
-        dayTemperature.add(27);
-        dayTemperature.add(21);
+        dayTemperature.add(29);
         ArrayList<Integer> nightTemperature = new ArrayList<>(9);
         nightTemperature.add(17);
-        nightTemperature.add(8);
-        nightTemperature.add(-2);
-        nightTemperature.add(3);
-        nightTemperature.add(12);
-        nightTemperature.add(10);
+        nightTemperature.add(18);
+        nightTemperature.add(19);
+        nightTemperature.add(18);
+        nightTemperature.add(19);
+        nightTemperature.add(19);
         ArrayList dayDegrees = new ArrayList();
         for (Integer intValue : dayTemperature) {
             int intValue2 = intValue.intValue();
@@ -165,8 +165,10 @@ public class MyWeatherTemperatureView extends View {
             canvas.drawText(this.dayDegrees.get(i), this.dayStringXVal.get(i).floatValue(), this.dayStringYVal.get(i).floatValue(), this.paint2);
             canvas.drawText(this.nightDegrees.get(i), this.nightStringXVal.get(i).floatValue(), this.nightStringYVal.get(i).floatValue(), this.paint2);
         }
-        for(int i2 = 1; i2 < this.dayXVal.size() - 1; i2++){
-            canvas.drawCircle(this.dayXVal.get(i2).floatValue(), this.dayYVal.get(i2).floatValue(), (float) ScreenHelper.convertToPixels(getContext(), 1.5f), this.paint1);
+        for (int i1 = 1; i1 < this.dayXVal.size() - 1; i1++) {
+            canvas.drawCircle(this.dayXVal.get(i1).floatValue(), this.dayYVal.get(i1).floatValue(), (float) ScreenHelper.convertToPixels(getContext(), 1.5f), this.paint1);
+        }
+        for (int i2 = 1; i2 < this.dayXVal.size() - 1; i2++) {
             canvas.drawCircle(this.dayXVal.get(i2).floatValue(), this.nightYVal.get(i2).floatValue(), (float) ScreenHelper.convertToPixels(getContext(), 1.5f), this.paint1);
         }
         int size = this.dayXVal.size();
@@ -229,6 +231,14 @@ public class MyWeatherTemperatureView extends View {
         int measuredWidth2 = getMeasuredWidth();
         this.dayXVal.add(0, Float.valueOf(0.0f));
         this.dayXVal.add(Float.valueOf((float) measuredWidth2));
+        List<Float> list = this.dayYVal;
+        list.add(0, list.get(0));
+        List<Float> list2 = this.dayYVal;
+        list2.add(list2.get(list2.size() - 1));
+        List<Float> list3 = this.nightYVal;
+        list3.add(0, list3.get(0));
+        List<Float> list4 = this.nightYVal;
+        list4.add(list4.get(list4.size() - 1));
     }
 
     public void onSizeChanged(int i, int i2, int i3, int i4) {

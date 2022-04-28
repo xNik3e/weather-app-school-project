@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
 
-public class hour_forecast extends Fragment {
+public class HourForecast extends Fragment {
 
 
-    public hour_forecast() {
+    public HourForecast() {
         // Required empty public constructor
     }
 

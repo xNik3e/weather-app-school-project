@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cities_content"
+    tools:context=".CityListActivity">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="@android:color/black"
+        android:paddingStart="14dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <FrameLayout
+            android:id="@+id/toolbar_icon_container"
+            android:layout_width="@dimen/control_image_standard"
+            android:layout_height="@dimen/control_image_standard"
+            android:layout_marginEnd="@dimen/control_padding_space2">
+
+            <ImageView
+                android:id="@+id/ic_gps"
+                android:layout_width="@dimen/control_icon_size_button"
+                android:layout_height="@dimen/control_icon_size_button"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_back"
+                android:visibility="visible" />
+        </FrameLayout>
+
+        <Space
+            android:id="@+id/title_spacing"
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/select_cities"
+            android:textAppearance="@style/control_text_style_title"
+            android:textColor="@color/title_color_dark"/>
+
+
+    </com.google.android.material.appbar.MaterialToolbar>
+    <View
+        android:layout_width="match_parent"
+        android:id="@+id/upper_divider"
+        android:layout_below="@id/toolbar"
+        android:layout_marginTop="0.5dp"
+        android:layout_marginBottom="0.5dp"
+        android:layout_height="2px"
+        android:background="@color/divider" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/cities_layout"
+        android:layout_below="@id/upper_divider"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:saveEnabled="false">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cities"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/control_margin2"
+            android:paddingTop="@dimen/control_padding_space2"
+            android:paddingEnd="@dimen/control_margin2"
+            android:paddingBottom="@dimen/control_padding_space2"
+            android:scrollbars="none" />
+
+    </RelativeLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="@dimen/fab_standard_size"
+        android:layout_height="@dimen/fab_standard_size"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/control_margin2"
+        android:layout_marginBottom="@dimen/control_margin2"
+        android:background="@drawable/fab"
+        android:backgroundTint="@color/white"
+        android:elevation="5dp"
+        android:src="@drawable/ic_add"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_city_view"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="188dp"
+        android:drawableTop="@drawable/ic_empty_city"
+        android:drawablePadding="8dp"
+        android:gravity="center"
+        android:text="@string/no_cities"
+        android:textAppearance="@style/control_text_under_display"
+        android:textColor="@color/icon_color_active_dark"
+        android:textSize="16sp"
+        android:visibility="gone"/>
+
+
+
+</RelativeLayout>

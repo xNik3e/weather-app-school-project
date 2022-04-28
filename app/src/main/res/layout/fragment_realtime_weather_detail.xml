@@ -8,7 +8,7 @@
     android:paddingStart="@dimen/weather_page_padding2"
     android:paddingTop="@dimen/control_padding_space2"
     android:paddingEnd="@dimen/weather_page_padding2"
-    tools:context=".fragments.realtime_weather_detail">
+    tools:context=".fragments.RealtimeWeatherDetail">
 
     <LinearLayout
         android:layout_width="match_parent"
