@@ -157,29 +157,30 @@
                     </LinearLayout>
 
                     <View
-                        android:layout_width="match_parent"
                         android:id="@+id/forecast_upper_divider"
+                        android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@color/divider" />
 
                     <FrameLayout
+                        android:id="@+id/hourly_forecast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/hourly_forecast"
                         android:paddingStart="@dimen/weather_page_padding"
-                        android:paddingEnd="@dimen/weather_page_padding"
                         android:paddingTop="14dp"
-                        android:paddingBottom="14dp"/>
+                        android:paddingEnd="@dimen/weather_page_padding"
+                        android:paddingBottom="14dp" />
 
                     <View
-                        android:layout_width="match_parent"
                         android:id="@+id/forecast_bottom_divider"
+                        android:layout_width="match_parent"
                         android:layout_height="2px"
                         android:background="@color/divider" />
+
                     <FrameLayout
+                        android:id="@+id/realtime_weather_detail"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/realtime_weather_detail"/>
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
             </ScrollView>

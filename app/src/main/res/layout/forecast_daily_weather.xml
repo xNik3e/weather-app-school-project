@@ -8,15 +8,17 @@
     android:paddingTop="5dp"
     android:paddingEnd="3dp"
     android:paddingBottom="5dp">
-    <TextView
+    <com.example.weatherapp.utils.AlwaysMarqueeTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/day"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
         android:gravity="center"
         android:singleLine="true"
         android:textAppearance="@style/control_text_body1"
         android:textColor="@color/text_primary_dark"
-        tools:text="Poniedziałek"/>
+        android:text="Poniedziałek"/>
 
     <com.example.weatherapp.utils.AlwaysMarqueeTextView
         android:layout_width="match_parent"
@@ -29,7 +31,7 @@
         android:textSize="12sp"
         android:textAppearance="@style/control_text_body1"
         android:textColor="@color/text_primary_dark"
-        tools:text="Apr 27"/>
+        android:text="Apr 27"/>
 
     <ImageView
         android:layout_width="@dimen/control_icon_size_button"
@@ -37,7 +39,7 @@
         android:id="@+id/forecast_daily_weather_icon"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/control_margin1"
-        tools:src="@drawable/ic_downpour"/>
+        android:src="@drawable/ic_downpour"/>
 
     <com.example.weatherapp.utils.AlwaysMarqueeTextView
         android:layout_width="match_parent"

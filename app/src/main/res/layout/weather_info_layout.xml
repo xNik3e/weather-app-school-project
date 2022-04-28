@@ -107,7 +107,7 @@
                         android:id="@+id/forecast_weather"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="117dp"
+                        android:minHeight="110dp"
                         android:paddingStart="@dimen/control_padding_space3"
                         android:paddingTop="@dimen/control_padding_space5"
                         android:paddingEnd="@dimen/control_padding_space3"
