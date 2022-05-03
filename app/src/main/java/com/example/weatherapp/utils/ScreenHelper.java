@@ -11,7 +11,7 @@ import android.view.WindowManager;
 public class ScreenHelper {
     private static int displayCutout;
 
-    public static int getHeightInPixels(Context context){
+    public static int getHeightInPixels(Context context) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().getRealMetrics(displayMetrics);
         return displayMetrics.heightPixels;
