@@ -20,6 +20,13 @@
         <item name="android:letterSpacing">0</item>
     </style>
 
+    <style name="control_text_description">
+        <item name="android:textSize">@dimen/control_text_size_description</item>
+        <item name="android:lineSpacingMultiplier">1.03</item>
+        <item name="android:fontFamily">@string/control_font_family_display</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
     <style name="control_text_display">
         <item name="android:textSize">@dimen/control_text_size_display</item>
         <item name="android:fontFamily">@string/control_font_family_display</item>
@@ -51,4 +58,42 @@
         <item name="android:layout_gravity">fill</item>
     </style>
 
+    <style name="ClearableEditText">
+        <item name="clearButtonAlwaysVisible">false</item>
+        <item name="clearButtonDrawable">@drawable/ic_clear</item>
+        <item name="clearButtonHeight">16dp</item>
+        <item name="clearButtonPadding">5dp</item>
+        <item name="clearButtonPosition">end</item>
+        <item name="clearButtonWidth">16dp</item>
+    </style>
+
+    <style name="CityTagTitle">
+        <item name="android:textAppearance">@style/control_text_style_subtitle</item>
+        <item name="android:textColor">@color/accent_color</item>
+        <item name="android:paddingTop">@dimen/control_padding_space4</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/control_margin5</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:paddingStart">@dimen/control_margin2</item>
+        <item name="android:paddingEnd">@dimen/control_margin2</item>
+
+    </style>
+
+    <style name="CityTagBackground">
+        <item name="android:background">@drawable/background_city_tag</item>
+    </style>
+
+    <style name="CityTagText">
+        <item name="android:textAppearance">@style/control_text_description</item>
+        <item name="android:textColor">@color/city_tag_background</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">left|center_horizontal|clip_horizontal|center_vertical</item>
+        <item name="android:background">@drawable/ripple_city_tag</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">28dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">22dp</item>
+        <item name="android:paddingEnd">22dp</item>
+        <item name="android:elevation">0.8dp</item>
+    </style>
 </resources>

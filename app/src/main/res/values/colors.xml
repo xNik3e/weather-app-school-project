@@ -14,6 +14,9 @@
     <color name="text_primary_light">#d8000000</color>
     <color name="text_secondary_dark">#89ffffff</color>
     <color name="text_secondary_light">#66000000</color>
+    <color name="city_tag_background">#ebebeb</color>
+    <color name="city_tag_ripple">#29000000</color>
     <color name="transparent" tools:ignore="MissingDefaultResource">#00000000</color>
     <color name="divider">#1effffff</color>
+    <color name="accent_color">#2196f3</color>
 </resources>

@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="@android:color/black"
+        android:background="@android:color/transparent"
         android:paddingStart="14dp"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp">
@@ -23,7 +23,7 @@
             android:layout_marginEnd="@dimen/control_padding_space2">
 
             <ImageView
-                android:id="@+id/ic_gps"
+                android:id="@+id/ic_back"
                 android:layout_width="@dimen/control_icon_size_button"
                 android:layout_height="@dimen/control_icon_size_button"
                 android:layout_gravity="center"
@@ -42,7 +42,7 @@
             android:gravity="center"
             android:text="@string/select_cities"
             android:textAppearance="@style/control_text_style_title"
-            android:textColor="@color/title_color_dark"/>
+            android:textColor="@color/title_color_dark" />
 
 
     </com.google.android.material.appbar.MaterialToolbar>
@@ -80,6 +80,7 @@
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="@dimen/fab_standard_size"
         android:layout_height="@dimen/fab_standard_size"
+        android:id="@+id/fab"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="@dimen/control_margin2"
