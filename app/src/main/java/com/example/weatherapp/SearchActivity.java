@@ -52,7 +52,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher {
         setContentView(R.layout.activity_search);
 
         citySearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CitySearchViewModel.class);
-        toolbar =findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         iconContainer = findViewById(R.id.toolbar_icon_container);
         icBack = findViewById(R.id.ic_back);
         cEditText = findViewById(R.id.search_bar_input_field);
@@ -86,13 +86,18 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher {
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        if(s.length() >= 2){
-            hint.setVisibility(View.GONE);
+        if (s.length() >= 2) {
+            setEverythingHidden(true);
             search(s.toString());
-        }else{
-            hint.setVisibility(View.VISIBLE);
+        } else {
+            if (s.length() == 1) {
+                locatedCityTitle.setVisibility(View.GONE);
+                locatedCityContent.setVisibility(View.GONE);
+            } else
+                setEverythingVisible(true);
+
             hint.setText(getResources().getString(R.string.search_something));
-            hint.setCompoundDrawables(null, getResources().getDrawable(R.drawable.ic_search),null, null);
+            hint.setCompoundDrawablesWithIntrinsicBounds(null, getResources().getDrawable(R.drawable.ic_search), null, null);
             models.clear();
             adapter.notifyDataSetChanged();
         }
@@ -103,10 +108,10 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher {
             @SuppressLint("UseCompatLoadingForDrawables")
             @Override
             public void onChanged(GeoCodeFuzzy geoCodeFuzzy) {
-                if(geoCodeFuzzy.getResults() != null && !geoCodeFuzzy.getResults().isEmpty()){
-                    hint.setVisibility(View.GONE);
+                if (geoCodeFuzzy.getResults() != null && !geoCodeFuzzy.getResults().isEmpty()) {
+                    setEverythingHidden(true);
                     models.clear();
-                    for(ResultsItem r: geoCodeFuzzy.getResults()){
+                    for (ResultsItem r : geoCodeFuzzy.getResults()) {
                         CityModel cityModel = new CityModel();
                         cityModel.setAdded(false);
                         cityModel.setFreeFormAddress(r.getAddress().getFreeformAddress());
@@ -117,10 +122,10 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher {
                         models.add(cityModel);
                     }
                     adapter.notifyDataSetChanged();
-                }else{
-                    hint.setVisibility(View.VISIBLE);
+                } else {
+                    setEverythingVisible(false);
                     hint.setText(getResources().getString(R.string.no_matches));
-                    hint.setCompoundDrawables(null, SearchActivity.this.getResources().getDrawable(R.drawable.no_search_icon),null, null);
+                    hint.setCompoundDrawablesWithIntrinsicBounds(null, SearchActivity.this.getResources().getDrawable(R.drawable.no_search_icon), null, null);
                 }
             }
         });
@@ -129,5 +134,23 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher {
     @Override
     public void afterTextChanged(Editable s) {
 
+    }
+
+    private void setEverythingHidden(boolean isLocated) {
+        hint.setVisibility(View.GONE);
+        if (isLocated) {
+            locatedCityTitle.setVisibility(View.GONE);
+            locatedCityContent.setVisibility(View.GONE);
+        }
+        relativeLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void setEverythingVisible(boolean isLocated) {
+        hint.setVisibility(View.VISIBLE);
+        if (isLocated) {
+            locatedCityTitle.setVisibility(View.VISIBLE);
+            locatedCityContent.setVisibility(View.VISIBLE);
+        }
+        relativeLayout.setVisibility(View.GONE);
     }
 }
