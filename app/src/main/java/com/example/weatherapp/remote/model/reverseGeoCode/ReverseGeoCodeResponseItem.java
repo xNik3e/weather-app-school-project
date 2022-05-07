@@ -1,8 +1,8 @@
-package com.example.weatherapp.remote.model.geoModel;
+package com.example.weatherapp.remote.model.reverseGeoCode;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GeoResponseItem{
+public class ReverseGeoCodeResponseItem{
 
 	@SerializedName("local_names")
 	private LocalNames localNames;

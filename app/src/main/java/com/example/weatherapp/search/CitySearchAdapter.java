@@ -61,7 +61,7 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Vi
             addedLabel = itemView.findViewById(R.id.added_label);
             region = itemView.findViewById(R.id.region);
 
-            /*
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -71,7 +71,7 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Vi
                     bundle.putSerializable("city", models.get(getAdapterPosition()));
                     context.startActivity(new Intent(context, CityListActivity.class).putExtras(bundle));
                 }
-            });*/
+            });
 
         }
     }

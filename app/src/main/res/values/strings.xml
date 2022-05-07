@@ -49,4 +49,16 @@
     <string name="locate">Locate</string>
     <string name="city_exist">Added</string>
     <string name="no_matches">No matches</string>
+    <string name="no_network">No network connection</string>
+    <string name="unable_to_locate_city">Unable to locate the current city and need to get your location information</string>
+    <string name="dialog_go_to_settings">Go to Settings</string>
+    <string name="cancel">@android:string/cancel</string>
+    <string name="GPS_disabled">It seems that your GPS is disabled, do you want to activate it?</string>
+    <string name="Network_disabled">It seems that your connection is disabled, do you want to activate it?</string>
+    <string name="btn_yes">Yes</string>
+    <string name="btn_no">No</string>
+    <string name="GPS_permissions">You must accept the permissions to use the application</string>
+    <string name="btn_watch_permissions">Watch Permissions</string>
+    <string name="btn_close">Close</string>
+    <string name="error">Error</string>
 </resources>

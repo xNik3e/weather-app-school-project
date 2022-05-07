@@ -68,7 +68,8 @@
             style="@style/CityTagTitle"
             android:text="@string/locate_current_city" />
 
-        <include layout="@layout/located_city" />
+        <include layout="@layout/located_city"
+            android:id="@+id/located_city_layout"/>
 
     </LinearLayout>
 

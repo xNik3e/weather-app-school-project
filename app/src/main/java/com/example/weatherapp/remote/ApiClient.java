@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    public static String BASE_URL = "http://api.openweathermap.org/";
+    public static String BASE_URL = "https://api.openweathermap.org/";
     private static Retrofit retrofit;
 
     public static Retrofit getRetrofit() {
