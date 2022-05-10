@@ -44,7 +44,9 @@ public class CityWeatherRepository {
         Gson gson = new Gson();
         String json = preferences.getString("SerializableWeatherData", "");
         Type listOfWeatherData = new TypeToken<ArrayList<CityWeatherModel>>() {}.getType();
-        dataSet = gson.fromJson(json, listOfWeatherData);
+        List<CityWeatherModel> tempModels = gson.fromJson(json, listOfWeatherData);
+        if(tempModels != null && !tempModels.isEmpty() )
+            dataSet = tempModels;
     }
 
     public void saveCityWeatherModel(Context context, List<CityWeatherModel> data){

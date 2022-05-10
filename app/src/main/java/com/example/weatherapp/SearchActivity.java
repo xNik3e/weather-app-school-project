@@ -40,8 +40,7 @@ import com.example.weatherapp.city_list.CityWeatherModel;
 import com.example.weatherapp.remote.apis.ApiParams;
 import com.example.weatherapp.remote.model.GeoApiModel.GeoCodeFuzzy;
 import com.example.weatherapp.remote.model.GeoApiModel.ResultsItem;
-import com.example.weatherapp.remote.model.one_call_weather.OneCallWeatherResponse;
-import com.example.weatherapp.remote.model.reverseGeoCode.ReverseGeoCodeResponse;
+import com.example.weatherapp.remote.model.one_call_current_weather.OneCallCurrentWeatherResponse;
 import com.example.weatherapp.remote.model.reverseGeoCode.ReverseGeoCodeResponseItem;
 import com.example.weatherapp.search.CityModel;
 import com.example.weatherapp.search.CitySearchAdapter;
@@ -56,10 +55,8 @@ import com.example.weatherapp.utils.viewmodels.WeatherSearchViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class SearchActivity extends AppCompatActivity implements TextWatcher, LocationServices.LocationServicesListener, CitySearchAdapter.SearchInterface {
 
@@ -93,7 +90,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
 
     //TODO update it later
 
-    private OneCallWeatherResponse oneCall; //do not use anywhere other than in getWeather()
+    private OneCallCurrentWeatherResponse oneCall; //do not use anywhere other than in getWeather()
     private CityWeatherModel cityWeatherModel; //oneCall + cityModel got from get weather (either by clicking on the locate button, or item in RV)
     private CityModel cityModel; //got from locating the city using either gps or network
     private List<CityWeatherModel> finalModels = new ArrayList<>(); //retrieve and update if needed
@@ -360,11 +357,11 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
     }
 
     private CityWeatherModel getWeather(CityModel model) {
-        weatherSearchViewModel.getWeatherData(apiParams.getWeatherParams(model.getLat(), model.getLon())).observe(SearchActivity.this, new Observer<OneCallWeatherResponse>() {
+        weatherSearchViewModel.getWeatherData(apiParams.getWeatherParams(model.getLat(), model.getLon(), null)).observe(this, new Observer<OneCallCurrentWeatherResponse>() {
             @Override
-            public void onChanged(OneCallWeatherResponse oneCallWeatherResponse) {
-                if (oneCallWeatherResponse != null) {
-                    oneCall = oneCallWeatherResponse;
+            public void onChanged(OneCallCurrentWeatherResponse oneCallCurrentWeatherResponse) {
+                if (oneCallCurrentWeatherResponse != null) {
+                    oneCall = oneCallCurrentWeatherResponse;
                     cityWeatherModel = new CityWeatherModel(model, oneCall);
                 }
             }

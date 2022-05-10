@@ -1,16 +1,12 @@
-package com.example.weatherapp.remote.model.one_call_weather;
+package com.example.weatherapp.remote.model.one_call_current_weather;
 
-import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class DailyItem implements Serializable {
+public class DailyItem{
 
 	@SerializedName("moonset")
 	private int moonset;
-
-	@SerializedName("rain")
-	private double rain;
 
 	@SerializedName("sunrise")
 	private int sunrise;
@@ -40,13 +36,13 @@ public class DailyItem implements Serializable {
 	private double windGust;
 
 	@SerializedName("dt")
-	private int dt;
+	private double dt;
 
 	@SerializedName("pop")
 	private double pop;
 
 	@SerializedName("wind_deg")
-	private int windDeg;
+	private double windDeg;
 
 	@SerializedName("dew_point")
 	private double dewPoint;
@@ -63,155 +59,82 @@ public class DailyItem implements Serializable {
 	@SerializedName("wind_speed")
 	private double windSpeed;
 
-	public void setMoonset(int moonset){
-		this.moonset = moonset;
-	}
+	@SerializedName("rain")
+	private double rain;
 
 	public int getMoonset(){
 		return moonset;
-	}
-
-	public void setRain(double rain){
-		this.rain = rain;
-	}
-
-	public double getRain(){
-		return rain;
-	}
-
-	public void setSunrise(int sunrise){
-		this.sunrise = sunrise;
 	}
 
 	public int getSunrise(){
 		return sunrise;
 	}
 
-	public void setTemp(Temp temp){
-		this.temp = temp;
-	}
-
 	public Temp getTemp(){
 		return temp;
-	}
-
-	public void setMoonPhase(double moonPhase){
-		this.moonPhase = moonPhase;
 	}
 
 	public double getMoonPhase(){
 		return moonPhase;
 	}
 
-	public void setUvi(double uvi){
-		this.uvi = uvi;
-	}
-
 	public double getUvi(){
 		return uvi;
-	}
-
-	public void setMoonrise(int moonrise){
-		this.moonrise = moonrise;
 	}
 
 	public int getMoonrise(){
 		return moonrise;
 	}
 
-	public void setPressure(int pressure){
-		this.pressure = pressure;
-	}
-
 	public int getPressure(){
 		return pressure;
-	}
-
-	public void setClouds(int clouds){
-		this.clouds = clouds;
 	}
 
 	public int getClouds(){
 		return clouds;
 	}
 
-	public void setFeelsLike(FeelsLike feelsLike){
-		this.feelsLike = feelsLike;
-	}
-
 	public FeelsLike getFeelsLike(){
 		return feelsLike;
-	}
-
-	public void setWindGust(double windGust){
-		this.windGust = windGust;
 	}
 
 	public double getWindGust(){
 		return windGust;
 	}
 
-	public void setDt(int dt){
-		this.dt = dt;
-	}
-
-	public int getDt(){
+	public double getDt(){
 		return dt;
-	}
-
-	public void setPop(double pop){
-		this.pop = pop;
 	}
 
 	public double getPop(){
 		return pop;
 	}
 
-	public void setWindDeg(int windDeg){
-		this.windDeg = windDeg;
-	}
-
-	public int getWindDeg(){
+	public double getWindDeg(){
 		return windDeg;
-	}
-
-	public void setDewPoint(double dewPoint){
-		this.dewPoint = dewPoint;
 	}
 
 	public double getDewPoint(){
 		return dewPoint;
 	}
 
-	public void setSunset(int sunset){
-		this.sunset = sunset;
-	}
-
 	public int getSunset(){
 		return sunset;
-	}
-
-	public void setWeather(List<WeatherItem> weather){
-		this.weather = weather;
 	}
 
 	public List<WeatherItem> getWeather(){
 		return weather;
 	}
 
-	public void setHumidity(int humidity){
-		this.humidity = humidity;
-	}
-
 	public int getHumidity(){
 		return humidity;
 	}
 
-	public void setWindSpeed(double windSpeed){
-		this.windSpeed = windSpeed;
-	}
-
 	public double getWindSpeed(){
 		return windSpeed;
+	}
+
+	public double getRain(){
+		return rain;
 	}
 }
