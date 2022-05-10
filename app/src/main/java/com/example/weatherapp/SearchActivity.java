@@ -23,6 +23,7 @@ import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,7 +41,7 @@ import com.example.weatherapp.city_list.CityWeatherModel;
 import com.example.weatherapp.remote.apis.ApiParams;
 import com.example.weatherapp.remote.model.GeoApiModel.GeoCodeFuzzy;
 import com.example.weatherapp.remote.model.GeoApiModel.ResultsItem;
-import com.example.weatherapp.remote.model.one_call_current_weather.OneCallCurrentWeatherResponse;
+import com.example.weatherapp.remote.model.one_call_current_weather.OneCallWeatherResponse;
 import com.example.weatherapp.remote.model.reverseGeoCode.ReverseGeoCodeResponseItem;
 import com.example.weatherapp.search.CityModel;
 import com.example.weatherapp.search.CitySearchAdapter;
@@ -90,7 +91,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
 
     //TODO update it later
 
-    private OneCallCurrentWeatherResponse oneCall; //do not use anywhere other than in getWeather()
+    private OneCallWeatherResponse oneCall; //do not use anywhere other than in getWeather()
     private CityWeatherModel cityWeatherModel; //oneCall + cityModel got from get weather (either by clicking on the locate button, or item in RV)
     private CityModel cityModel; //got from locating the city using either gps or network
     private List<CityWeatherModel> finalModels = new ArrayList<>(); //retrieve and update if needed
@@ -105,6 +106,12 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        if (android.os.Build.VERSION.SDK_INT > 9)
+        {
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+        }
 
         citySearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CitySearchViewModel.class);
         reverseCitySearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(ReverseCitySearchViewModel.class);
@@ -356,17 +363,13 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         });
     }
 
-    private CityWeatherModel getWeather(CityModel model) {
-        weatherSearchViewModel.getWeatherData(apiParams.getWeatherParams(model.getLat(), model.getLon(), null)).observe(this, new Observer<OneCallCurrentWeatherResponse>() {
-            @Override
-            public void onChanged(OneCallCurrentWeatherResponse oneCallCurrentWeatherResponse) {
-                if (oneCallCurrentWeatherResponse != null) {
-                    oneCall = oneCallCurrentWeatherResponse;
-                    cityWeatherModel = new CityWeatherModel(model, oneCall);
-                }
-            }
-        });
-        return cityWeatherModel;
+    private void getWeather(CityModel model) {
+        OneCallWeatherResponse response = weatherSearchViewModel.getWeatherData(apiParams.getWeatherParams(model.getLat(), model.getLon()));
+        if(response != null){
+            this.oneCall = response;
+            this.cityWeatherModel = new CityWeatherModel(model, this.oneCall);
+        }
+
     }
 
     @Override
@@ -461,15 +464,16 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    //TODO tf is even going on?
+
     private void updateList(boolean updateLocatedModel) {
         LiveData<List<CityWeatherModel>> liveModels = cityWeatherViewModel.getCityWeatherModels();
+        List<CityWeatherModel> tempLiveModels = liveModels.getValue();
         //null and empty check
-        if (liveModels.getValue() != null && liveModels.getValue().isEmpty())
+        if (tempLiveModels != null && !tempLiveModels.isEmpty())
             cityWeatherViewModel.addNewCity(this.cityWeatherModel);
         else {
             if (updateLocatedModel) {
-                for (CityWeatherModel m : liveModels.getValue()) {
+                for (CityWeatherModel m : tempLiveModels) {
                     if (m.getCityModel().isLocated()) {
                         List<CityWeatherModel> tempList = liveModels.getValue();
                         CityWeatherModel tempModel = this.cityWeatherModel;
@@ -487,8 +491,14 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
                 cityWeatherViewModel.addNewCity(this.cityWeatherModel);
             }
         }
-        cityWeatherViewModel.saveCityData(this);
-        goToActivity();
+        cityWeatherViewModel.getCityWeatherModels().observe(this, new Observer<List<CityWeatherModel>>() {
+            @Override
+            public void onChanged(List<CityWeatherModel> modelList) {
+                cityWeatherViewModel.saveCityData(getBaseContext(), modelList);
+                goToActivity();
+            }
+        });
+
     }
 
     private void goToActivity() {

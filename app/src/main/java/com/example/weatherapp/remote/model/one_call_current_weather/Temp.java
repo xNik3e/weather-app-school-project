@@ -2,7 +2,9 @@ package com.example.weatherapp.remote.model.one_call_current_weather;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Temp{
+import java.io.Serializable;
+
+public class Temp {
 
 	@SerializedName("min")
 	private double min;

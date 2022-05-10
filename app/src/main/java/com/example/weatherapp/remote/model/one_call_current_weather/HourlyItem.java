@@ -1,5 +1,6 @@
-package com.example.weatherapp.remote.model.one_call_hourly;
+package com.example.weatherapp.remote.model.one_call_current_weather;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,7 +16,7 @@ public class HourlyItem{
 	private double uvi;
 
 	@SerializedName("pressure")
-	private int pressure;
+	private double pressure;
 
 	@SerializedName("clouds")
 	private int clouds;
@@ -27,13 +28,13 @@ public class HourlyItem{
 	private double windGust;
 
 	@SerializedName("dt")
-	private int dt;
+	private double dt;
 
 	@SerializedName("pop")
-	private int pop;
+	private double pop;
 
 	@SerializedName("wind_deg")
-	private int windDeg;
+	private double windDeg;
 
 	@SerializedName("dew_point")
 	private double dewPoint;
@@ -42,7 +43,7 @@ public class HourlyItem{
 	private List<WeatherItem> weather;
 
 	@SerializedName("humidity")
-	private int humidity;
+	private double humidity;
 
 	@SerializedName("wind_speed")
 	private double windSpeed;
@@ -59,7 +60,7 @@ public class HourlyItem{
 		return uvi;
 	}
 
-	public int getPressure(){
+	public double getPressure(){
 		return pressure;
 	}
 
@@ -75,15 +76,15 @@ public class HourlyItem{
 		return windGust;
 	}
 
-	public int getDt(){
+	public double getDt(){
 		return dt;
 	}
 
-	public int getPop(){
+	public double getPop(){
 		return pop;
 	}
 
-	public int getWindDeg(){
+	public double getWindDeg(){
 		return windDeg;
 	}
 
@@ -95,7 +96,7 @@ public class HourlyItem{
 		return weather;
 	}
 
-	public int getHumidity(){
+	public double getHumidity(){
 		return humidity;
 	}
 

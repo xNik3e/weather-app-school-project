@@ -23,7 +23,7 @@ public class CityWeatherRepository {
     private static CityWeatherRepository instance;
     private static final String SHARED_PREFERENCE_NAME = "city_weather_data";
     private static SharedPreferences preferences;
-    private List<CityWeatherModel> dataSet = new ArrayList<>();
+    private static List<CityWeatherModel> dataSet = new ArrayList<>();
 
     public static CityWeatherRepository getInstance(){
         if(instance == null)

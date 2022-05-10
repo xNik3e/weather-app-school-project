@@ -1,9 +1,10 @@
 package com.example.weatherapp.remote.model.one_call_current_weather;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class DailyItem{
+public class DailyItem {
 
 	@SerializedName("moonset")
 	private int moonset;
@@ -24,7 +25,7 @@ public class DailyItem{
 	private int moonrise;
 
 	@SerializedName("pressure")
-	private int pressure;
+	private double pressure;
 
 	@SerializedName("clouds")
 	private int clouds;
@@ -54,7 +55,7 @@ public class DailyItem{
 	private List<WeatherItem> weather;
 
 	@SerializedName("humidity")
-	private int humidity;
+	private double humidity;
 
 	@SerializedName("wind_speed")
 	private double windSpeed;
@@ -86,7 +87,7 @@ public class DailyItem{
 		return moonrise;
 	}
 
-	public int getPressure(){
+	public double getPressure(){
 		return pressure;
 	}
 
@@ -126,7 +127,7 @@ public class DailyItem{
 		return weather;
 	}
 
-	public int getHumidity(){
+	public double getHumidity(){
 		return humidity;
 	}
 

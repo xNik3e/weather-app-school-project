@@ -7,14 +7,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.weatherapp.remote.apis.weather_api.ApiService;
-import com.example.weatherapp.remote.model.one_call_current_weather.OneCallCurrentWeatherResponse;
+import com.example.weatherapp.remote.model.one_call_current_weather.OneCallWeatherResponse;
 import com.example.weatherapp.remote.model.reverseGeoCode.ReverseGeoCodeResponseItem;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,27 +53,16 @@ public class Repository {
         return reverseGeoData;
     }
 
-    public LiveData<OneCallCurrentWeatherResponse> fetchCurrentWeatherData(Map<String, String> params) {
-        MutableLiveData<OneCallCurrentWeatherResponse> weatherData = new MutableLiveData<>();
-        Call<OneCallCurrentWeatherResponse> call = apiService.getCurrentWeatherData(params);
-        call.enqueue(new Callback<OneCallCurrentWeatherResponse>() {
-            @SuppressLint("StaticFieldLeak")
-            @Override
-            public void onResponse(Call<OneCallCurrentWeatherResponse> call, Response<OneCallCurrentWeatherResponse> response) {
-                if (response.isSuccessful()) {
-                    Log.d("TAG", response.body().toString());
-                    weatherData.postValue(response.body());
-
-                } else {
-                    //error
-                }
-            }
-
-            @Override
-            public void onFailure(Call<OneCallCurrentWeatherResponse> call, Throwable t) {
-                Log.d("TAG", "ZNOWU NIE DZIALA", t);
-            }
-        });
-        return weatherData;
+    public OneCallWeatherResponse fetchCurrentWeatherData(Map<String, String> params) {
+        OneCallWeatherResponse oneCallWeatherResponse = new OneCallWeatherResponse();
+        Call<OneCallWeatherResponse> call = apiService.getCurrentWeatherData(params);
+        try {
+            Response<OneCallWeatherResponse> response = call.execute();
+            if (response.isSuccessful())
+                oneCallWeatherResponse = response.body();
+        } catch (IOException e) {
+            Log.d("TAG", e.getMessage());
+        }
+        return oneCallWeatherResponse;
     }
 }

@@ -1,9 +1,12 @@
 package com.example.weatherapp.remote.model.one_call_current_weather;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class OneCallCurrentWeatherResponse{
+public class OneCallWeatherResponse {
+	public OneCallWeatherResponse() {
+	}
 
 	@SerializedName("current")
 	private Current current;
@@ -19,6 +22,9 @@ public class OneCallCurrentWeatherResponse{
 
 	@SerializedName("lon")
 	private double lon;
+
+	@SerializedName("hourly")
+	private List<HourlyItem> hourly;
 
 	@SerializedName("lat")
 	private double lat;
@@ -41,6 +47,10 @@ public class OneCallCurrentWeatherResponse{
 
 	public double getLon(){
 		return lon;
+	}
+
+	public List<HourlyItem> getHourly(){
+		return hourly;
 	}
 
 	public double getLat(){

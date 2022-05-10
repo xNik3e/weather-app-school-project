@@ -16,11 +16,10 @@ public class ApiClient {
 
     public static Retrofit getRetrofit() {
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        if (BuildConfig.DEBUG) {
-            httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
-        } else {
-            httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.NONE);
-        }
+
+        httpLoggingInterceptor.level(HttpLoggingInterceptor.Level.BODY);
+
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .writeTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10, TimeUnit.SECONDS)
@@ -29,6 +28,7 @@ public class ApiClient {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder().baseUrl(BASE_URL)
                     .client(okHttpClient)
+
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

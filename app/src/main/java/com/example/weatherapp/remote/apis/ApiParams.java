@@ -25,7 +25,7 @@ public class ApiParams {
 
         this.weatherParams.put("lat", "0");
         this.weatherParams.put("lon", "0");
-        this.weatherParams.put("exclude", "alerts,minutely,hourly");
+        this.weatherParams.put("exclude", "alerts,minutely");
         this.weatherParams.put("appid", "9da165e7a2d95c865045f4cc7a492a2c");
         this.weatherParams.put("units", "metric");
         this.weatherParams.put("lang", "pl");
@@ -42,11 +42,9 @@ public class ApiParams {
         return locParams;
     }
 
-    public Map<String, String> getWeatherParams(double lat, double lon, String exclude) {
+    public Map<String, String> getWeatherParams(double lat, double lon) {
         this.weatherParams.replace("lat", String.valueOf(lat));
         this.weatherParams.replace("lon", String.valueOf(lon));
-        if(exclude != null)
-            this.weatherParams.replace("exclude", exclude);
         return weatherParams;
     }
 

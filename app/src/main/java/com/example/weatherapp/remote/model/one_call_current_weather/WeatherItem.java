@@ -2,6 +2,8 @@ package com.example.weatherapp.remote.model.one_call_current_weather;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 public class WeatherItem{
 
 	@SerializedName("icon")
