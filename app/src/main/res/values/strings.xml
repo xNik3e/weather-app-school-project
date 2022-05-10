@@ -62,4 +62,68 @@
     <string name="btn_close">Close</string>
     <string name="error">Error</string>
     <string name="locate_error">Some error occurred while trying to locate</string>
+
+    <string name="enum_weather_type_thunderstorm_200">Thunderstorm with light rain</string>
+    <string name="enum_weather_type_thunderstorm_201">Thunderstorm with rain</string>
+    <string name="enum_weather_type_thunderstorm_202">Thunderstorm with heavy rain</string>
+    <string name="enum_weather_type_thunderstorm_210">Light thunderstorm</string>
+    <string name="enum_weather_type_thunderstorm_211">Thunderstorm</string>
+    <string name="enum_weather_type_thunderstorm_212">Heavy thunderstorm</string>
+    <string name="enum_weather_type_thunderstorm_221">Ragged thunderstorm</string>
+    <string name="enum_weather_type_thunderstorm_230">Thunderstorm with light drizzle</string>
+    <string name="enum_weather_type_thunderstorm_231">Thunderstorm with drizzle</string>
+    <string name="enum_weather_type_thunderstorm_232">Thunderstorm with heavy drizzle</string>
+
+    <string name="enum_weather_type_drizzle_300">Light intensity drizzle</string>
+    <string name="enum_weather_type_drizzle_301">Drizzle</string>
+    <string name="enum_weather_type_drizzle_302">Heavy intensity drizzle</string>
+    <string name="enum_weather_type_drizzle_310">Light intensity drizzle rain</string>
+    <string name="enum_weather_type_drizzle_311">Drizzle rain</string>
+    <string name="enum_weather_type_drizzle_312">Heavy intensity drizzle rain</string>
+    <string name="enum_weather_type_drizzle_313">Shower rain and drizzle</string>
+    <string name="enum_weather_type_drizzle_314">Heavy shower rain and drizzle</string>
+    <string name="enum_weather_type_drizzle_321">Shower Drizzle</string>
+
+    <string name="enum_weather_type_rain_500">Light rain</string>
+    <string name="enum_weather_type_rain_501">Moderate rain</string>
+    <string name="enum_weather_type_rain_502">Heavy intensity rain</string>
+    <string name="enum_weather_type_rain_503">Very heavy rain</string>
+    <string name="enum_weather_type_rain_504">Extreme rain</string>
+    <string name="enum_weather_type_rain_511">Freezing rain</string>
+    <string name="enum_weather_type_rain_520">Light intensity shower rain</string>
+    <string name="enum_weather_type_rain_521">Shower rain</string>
+    <string name="enum_weather_type_rain_522">Heavy intensity shower rain</string>
+    <string name="enum_weather_type_rain_531">Ragged shower rain</string>
+
+    <string name="enum_weather_type_snow_600">Light snow</string>
+    <string name="enum_weather_type_snow_601">Snow</string>
+    <string name="enum_weather_type_snow_602">Heavy snow</string>
+    <string name="enum_weather_type_snow_611">Sleet</string>
+    <string name="enum_weather_type_snow_612">Light shower sleet</string>
+    <string name="enum_weather_type_snow_613">Shower sleet</string>
+    <string name="enum_weather_type_snow_615">Light rain and snow</string>
+    <string name="enum_weather_type_snow_616">Rain and snow</string>
+    <string name="enum_weather_type_snow_620">Light shower snow</string>
+    <string name="enum_weather_type_snow_621">Shower snow</string>
+    <string name="enum_weather_type_snow_622">Heavy shower snow</string>
+
+    <string name="enum_weather_type_mist_701">Mist</string>
+    <string name="enum_weather_type_smoke_711">Smoke</string>
+    <string name="enum_weather_type_haze_721">Haze</string>
+    <string name="enum_weather_type_dust_731">Sand/dust whirls</string>
+    <string name="enum_weather_type_fog_741">Fog</string>
+    <string name="enum_weather_type_sand_751">Sand</string>
+    <string name="enum_weather_type_dust_761">Dust</string>
+    <string name="enum_weather_type_ash_762">Ash</string>
+    <string name="enum_weather_type_squall_771">Squalls</string>
+    <string name="enum_weather_type_tornado_781">Tornado</string>
+
+    <string name="enum_weather_type_clear_800">Clear</string>
+    <string name="enum_weather_type_clouds_801">Few clouds</string>
+    <string name="enum_weather_type_clouds_802">Scattered clouds</string>
+    <string name="enum_weather_type_clouds_803">Broken clouds</string>
+    <string name="enum_weather_type_clouds_804">Overcast clouds</string>
+
+
+
 </resources>

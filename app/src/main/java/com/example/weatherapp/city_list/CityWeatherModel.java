@@ -14,6 +14,9 @@ public class CityWeatherModel implements Serializable {
         this.currentWeather = currentWeather;
     }
 
+    public CityWeatherModel() {
+    }
+
     public OneCallWeatherResponse getCurrentWeather() {
         return currentWeather;
     }

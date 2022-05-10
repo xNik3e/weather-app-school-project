@@ -71,9 +71,9 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingStart="@dimen/control_margin2"
-            android:paddingTop="@dimen/control_padding_space2"
+            android:paddingTop="@dimen/control_padding_space3"
             android:paddingEnd="@dimen/control_margin2"
-            android:paddingBottom="@dimen/control_padding_space2"
+            android:paddingBottom="@dimen/control_padding_space3"
             android:scrollbars="none" />
 
     </RelativeLayout>

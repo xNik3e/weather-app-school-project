@@ -469,7 +469,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         LiveData<List<CityWeatherModel>> liveModels = cityWeatherViewModel.getCityWeatherModels();
         List<CityWeatherModel> tempLiveModels = liveModels.getValue();
         //null and empty check
-        if (tempLiveModels != null && !tempLiveModels.isEmpty())
+        if (tempLiveModels != null && tempLiveModels.isEmpty())
             cityWeatherViewModel.addNewCity(this.cityWeatherModel);
         else {
             if (updateLocatedModel) {
