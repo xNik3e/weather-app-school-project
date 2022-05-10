@@ -3,7 +3,9 @@ package com.example.weatherapp;
 import static android.app.ProgressDialog.show;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -35,25 +36,32 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.weatherapp.remote.model.ApiParams;
+import com.example.weatherapp.city_list.CityWeatherModel;
+import com.example.weatherapp.remote.apis.ApiParams;
 import com.example.weatherapp.remote.model.GeoApiModel.GeoCodeFuzzy;
 import com.example.weatherapp.remote.model.GeoApiModel.ResultsItem;
+import com.example.weatherapp.remote.model.one_call_weather.OneCallWeatherResponse;
 import com.example.weatherapp.remote.model.reverseGeoCode.ReverseGeoCodeResponse;
 import com.example.weatherapp.remote.model.reverseGeoCode.ReverseGeoCodeResponseItem;
 import com.example.weatherapp.search.CityModel;
 import com.example.weatherapp.search.CitySearchAdapter;
-import com.example.weatherapp.search.CitySearchViewModel;
-import com.example.weatherapp.search.ReverseCitySearchViewModel;
-import com.example.weatherapp.utils.ClearableEditText;
+import com.example.weatherapp.utils.viewmodels.CitySearchViewModel;
+import com.example.weatherapp.utils.viewmodels.CityWeatherViewModel;
+import com.example.weatherapp.utils.viewmodels.ReverseCitySearchViewModel;
+import com.example.weatherapp.utils.view_services.ClearableEditText;
 import com.example.weatherapp.utils.DialogOnClickListenerInterface;
-import com.example.weatherapp.utils.LocationServices;
-import com.example.weatherapp.utils.ViewModelFactory;
+import com.example.weatherapp.utils.location_services.LocationServices;
+import com.example.weatherapp.utils.viewmodels.ViewModelFactory;
+import com.example.weatherapp.utils.viewmodels.WeatherSearchViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class SearchActivity extends AppCompatActivity implements TextWatcher, LocationServices.LocationServicesListener {
+public class SearchActivity extends AppCompatActivity implements TextWatcher, LocationServices.LocationServicesListener, CitySearchAdapter.SearchInterface {
 
     private MaterialToolbar toolbar;
     private FrameLayout iconContainer;
@@ -67,12 +75,10 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
     private View locatedCityLayout;
     private List<CityModel> models;
     private CitySearchAdapter adapter;
-    private CitySearchViewModel citySearchViewModel;
-    private ReverseCitySearchViewModel reverseCitySearchViewModel;
+
     private boolean isLocated = false;
     private LocationServices locationServices;
     private FrameLayout textButton;
-
 
     private View locatedDisplayLayout;
     private TextView text;
@@ -85,6 +91,19 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
     private ConnectivityManager connectivityManager;
     private BroadcastReceiver broadcastReceiver = new MyConnectivityReceiver();
 
+    //TODO update it later
+
+    private OneCallWeatherResponse oneCall; //do not use anywhere other than in getWeather()
+    private CityWeatherModel cityWeatherModel; //oneCall + cityModel got from get weather (either by clicking on the locate button, or item in RV)
+    private CityModel cityModel; //got from locating the city using either gps or network
+    private List<CityWeatherModel> finalModels = new ArrayList<>(); //retrieve and update if needed
+
+    //ViewModels
+    private CitySearchViewModel citySearchViewModel;
+    private WeatherSearchViewModel weatherSearchViewModel;
+    private ReverseCitySearchViewModel reverseCitySearchViewModel;
+    private CityWeatherViewModel cityWeatherViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +111,19 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
 
         citySearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CitySearchViewModel.class);
         reverseCitySearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(ReverseCitySearchViewModel.class);
+        weatherSearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(WeatherSearchViewModel.class);
 
+        cityWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CityWeatherViewModel.class);
+
+        cityWeatherViewModel.init(this);
+
+        /*cityWeatherViewModel.getCityWeatherModels().observe(this, new Observer<List<CityWeatherModel>>() {
+            @Override
+            public void onChanged(List<CityWeatherModel> modelList) {
+                //TODO change is made to List of models
+            }
+        });
+*/
         toolbar = findViewById(R.id.toolbar);
         iconContainer = findViewById(R.id.toolbar_icon_container);
         icBack = findViewById(R.id.ic_back);
@@ -111,6 +142,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         inputMethodManager = getSystemService(InputMethodManager.class);
         connectivityManager = getSystemService(ConnectivityManager.class);
         registerReceiver();
+
 
         models = new ArrayList<>();
         adapter = new CitySearchAdapter(this, models);
@@ -132,26 +164,39 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         cEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                if(!hasFocus)
+                if (!hasFocus)
                     hideKeyboard(v);
             }
         });
 
         if (!isLocated) {
-            text.setText("Locating...");
-            Location location = locationServices.getLocation(this);
-            if (location != null) {
-                locate(location.getLatitude(), location.getLongitude());
-                Log.d("LOC", location.toString());
-            } else {
-                text.setText("error");
-            }
-
+            locateTextUtil();
         } else {
-            //Show recent location
+            //do nothing
         }
 
+        textButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (isLocated) {
+                    locateTextUtil();
+                } else {
+                    //nothing
+                }
+                return true;
+            }
+        });
+    }
 
+    private void locateTextUtil() {
+        text.setText("Locating...");
+        Location location = locationServices.getLocation(this);
+        if (location != null) {
+            locate(location.getLatitude(), location.getLongitude());
+            Log.d("LOC", location.toString());
+        } else {
+            text.setText(getResources().getString(R.string.locate_error));
+        }
     }
 
     @Override
@@ -159,6 +204,11 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         locate(location.getLatitude(), location.getLongitude());
     }
 
+    @Override
+    public void search(CityModel model) {
+        getWeather(model);
+        updateList(false);
+    }
 
 
     class MyConnectivityReceiver extends BroadcastReceiver {
@@ -183,17 +233,12 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
                     isConnected = true;
                 }
                 hint.setCompoundDrawablesWithIntrinsicBounds(null, context.getDrawable(i), null, null);
+                if (!isLocated)
+                    locateTextUtil();
             }
             if ("android.location.PROVIDERS_CHANGED".equals(intent.getAction())) {
-                if (!isLocated) {
-                    text.setText("Locating...");
-                    Location location = locationServices.getLocation(context);
-                    if (location != null) {
-                        locate(location.getLatitude(), location.getLongitude());
-                    } else {
-                        text.setText("Error");
-                    }
-                }
+                if (!isLocated)
+                    locateTextUtil();
             }
 
         }
@@ -273,14 +318,15 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
                     setEverythingHidden(true);
                     models.clear();
                     for (ResultsItem r : geoCodeFuzzy.getResults()) {
-                        CityModel cityModel = new CityModel();
-                        cityModel.setAdded(false);
-                        cityModel.setFreeFormAddress(r.getAddress().getFreeformAddress());
-                        cityModel.setCountry(r.getAddress().getCountry());
-                        cityModel.setCountrySubdivision(r.getAddress().getCountrySubdivision());
-                        cityModel.setLat(r.getPosition().getLat());
-                        cityModel.setLon(r.getPosition().getLon());
-                        models.add(cityModel);
+                        CityModel tempCityModel = new CityModel();
+                        tempCityModel.setFreeFormAddress(r.getAddress().getFreeformAddress());
+                        tempCityModel.setCountry(r.getAddress().getCountry());
+                        tempCityModel.setCountrySubdivision(r.getAddress().getCountrySubdivision());
+                        tempCityModel.setLat(r.getPosition().getLat());
+                        tempCityModel.setLon(r.getPosition().getLon());
+                        tempCityModel.setAdded(false);
+
+                        models.add(tempCityModel);
                     }
                     adapter.notifyDataSetChanged();
                 } else {
@@ -291,16 +337,39 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
             }
         });
     }
+
     private void locate(double latitude, double longitude) {
         reverseCitySearchViewModel.getReverseGeoCode(apiParams.getLocParams(latitude, longitude)).observe(SearchActivity.this, new Observer<List<ReverseGeoCodeResponseItem>>() {
             @Override
             public void onChanged(List<ReverseGeoCodeResponseItem> reverseGeoCodeResponse) {
-                if(reverseGeoCodeResponse != null && !reverseGeoCodeResponse.isEmpty()){
+                if (reverseGeoCodeResponse != null && !reverseGeoCodeResponse.isEmpty()) {
                     ReverseGeoCodeResponseItem item = reverseGeoCodeResponse.get(0);
                     text.setText(item.getName());
+                    isLocated = true;
+                    cityModel = new CityModel();
+                    cityModel.setAdded(true);
+                    cityModel.setCountry(item.getCountry());
+                    cityModel.setLon(item.getLon());
+                    cityModel.setLat(item.getLat());
+                    cityModel.setFreeFormAddress(item.getName());
+                    cityModel.setCountrySubdivision(item.getState());
+                    cityModel.setLocated(isLocated);
                 }
             }
         });
+    }
+
+    private CityWeatherModel getWeather(CityModel model) {
+        weatherSearchViewModel.getWeatherData(apiParams.getWeatherParams(model.getLat(), model.getLon())).observe(SearchActivity.this, new Observer<OneCallWeatherResponse>() {
+            @Override
+            public void onChanged(OneCallWeatherResponse oneCallWeatherResponse) {
+                if (oneCallWeatherResponse != null) {
+                    oneCall = oneCallWeatherResponse;
+                    cityWeatherModel = new CityWeatherModel(model, oneCall);
+                }
+            }
+        });
+        return cityWeatherModel;
     }
 
     @Override
@@ -367,35 +436,68 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
 
     public static void createDialog(Activity activity) {
         DialogOnClickListenerInterface dListener = new DialogOnClickListenerInterface(activity);
-        AlertDialog create = new AlertDialog.Builder(activity).setMessage(R.string.unable_to_locate_city).
-                setPositiveButton(R.string.dialog_go_to_settings, dListener).
-                setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(activity);
+        builder.setMessage(R.string.unable_to_locate_city).setCancelable(false)
+                .setPositiveButton(R.string.dialog_go_to_settings, dListener)
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
-                }).create();
-        create.setCanceledOnTouchOutside(false);
-        create.show();
+                });
+        AlertDialog dialog = builder.create();
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
     }
 
+    //Button function
     public void myFun(View view) {
-        Toast.makeText(SearchActivity.this, "Button clicked", Toast.LENGTH_SHORT).show();
-        text.setText("Locating...");
-        Location location = locationServices.getLocation(this);
-        if (location != null) {
-            locate(location.getLatitude(), location.getLongitude());
-            Log.d("LOC", location.toString());
-        } else {
-            text.setText("error");
-        }
+        if (isLocated) {
+            getWeather(this.cityModel); //got cityModel from locateTextUtil and now cityWeatherModel
+            updateList(true);
+        } else
+            locateTextUtil();
     }
 
     public void hideKeyboard(View view) {
-        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
+    //TODO tf is even going on?
+    private void updateList(boolean updateLocatedModel) {
+        LiveData<List<CityWeatherModel>> liveModels = cityWeatherViewModel.getCityWeatherModels();
+        //null and empty check
+        if (liveModels.getValue() != null && liveModels.getValue().isEmpty())
+            cityWeatherViewModel.addNewCity(this.cityWeatherModel);
+        else {
+            if (updateLocatedModel) {
+                for (CityWeatherModel m : liveModels.getValue()) {
+                    if (m.getCityModel().isLocated()) {
+                        List<CityWeatherModel> tempList = liveModels.getValue();
+                        CityWeatherModel tempModel = this.cityWeatherModel;
+                        tempList.set(tempList.indexOf(m), tempModel);
+                        finalModels = tempList;
+                        break;
+                    }
+                }
+                if (!finalModels.isEmpty())
+                    cityWeatherViewModel.replaceCityData(this.finalModels);
+                else {
+                    cityWeatherViewModel.addNewCity(this.cityWeatherModel);
+                }
+            } else {
+                cityWeatherViewModel.addNewCity(this.cityWeatherModel);
+            }
+        }
+        cityWeatherViewModel.saveCityData(this);
+        goToActivity();
+    }
+
+    private void goToActivity() {
+        Intent intent = new Intent(SearchActivity.this, CityListActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
@@ -405,4 +507,5 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         }
         return super.dispatchTouchEvent(ev);
     }
+
 }

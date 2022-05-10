@@ -102,7 +102,7 @@
         android:textAppearance="@style/control_text_under_display"
         android:textColor="@color/icon_color_active_dark"
         android:textSize="16sp"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 
 

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <com.example.weatherapp.utils.AlwaysMarqueeTextView
+        <com.example.weatherapp.utils.view_services.AlwaysMarqueeTextView
             android:id="@+id/weather_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
         android:layout_marginBottom="6dp"
         android:src="@drawable/ic_snowstorm" />
 
-    <com.example.weatherapp.utils.AlwaysMarqueeTextView
+    <com.example.weatherapp.utils.view_services.AlwaysMarqueeTextView
         android:id="@+id/weather_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

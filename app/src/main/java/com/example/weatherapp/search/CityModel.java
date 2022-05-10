@@ -9,6 +9,7 @@ public class CityModel implements Serializable {
     private double lat;
     private double lon;
     private boolean isAdded;
+    private boolean isLocated;
 
     public boolean isAdded() {
         return isAdded;
@@ -28,6 +29,7 @@ public class CityModel implements Serializable {
         this.lat = lat;
         this.lon = lon;
         this.isAdded = false;
+        isLocated = false;
     }
 
     public String getFreeFormAddress() {
@@ -68,5 +70,13 @@ public class CityModel implements Serializable {
 
     public void setLon(double lon) {
         this.lon = lon;
+    }
+
+    public boolean isLocated() {
+        return isLocated;
+    }
+
+    public void setLocated(boolean located) {
+        isLocated = located;
     }
 }

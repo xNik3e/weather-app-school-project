@@ -21,10 +21,16 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Vi
 
     private Context context;
     private List<CityModel> models;
+    private SearchInterface searchInterface;
 
     public CitySearchAdapter(Context context, List<CityModel> models) {
         this.context = context;
         this.models = models;
+        searchInterface = (SearchInterface) context;
+    }
+
+    public interface SearchInterface{
+        void search(CityModel model);
     }
 
     @NonNull
@@ -67,9 +73,8 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Vi
                 public void onClick(View v) {
                     InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(v.getWindowToken(), 0);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("city", models.get(getAdapterPosition()));
-                    context.startActivity(new Intent(context, CityListActivity.class).putExtras(bundle));
+
+                    searchInterface.search(models.get(getAdapterPosition()));
                 }
             });
 

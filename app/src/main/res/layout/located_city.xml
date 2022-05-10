@@ -17,7 +17,7 @@
         android:clickable="true"
         android:focusedByDefault="true"
         android:focusable="true"
-        android:descendantFocusability="beforeDescendants"
+        android:longClickable="true"
         android:focusableInTouchMode="true"
         android:onClick="myFun">
 

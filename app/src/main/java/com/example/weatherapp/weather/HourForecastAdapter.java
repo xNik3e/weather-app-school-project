@@ -12,8 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.weatherapp.R;
-import com.example.weatherapp.fragments.HourForecast;
-import com.example.weatherapp.utils.AlwaysMarqueeTextView;
+import com.example.weatherapp.utils.view_services.AlwaysMarqueeTextView;
 import com.example.weatherapp.weather.model.HourlyWeather;
 
 import java.util.List;

@@ -1,8 +1,6 @@
 package com.example.weatherapp.weather.model;
 
-import android.widget.ImageView;
-
-import com.example.weatherapp.utils.AlwaysMarqueeTextView;
+import com.example.weatherapp.utils.view_services.AlwaysMarqueeTextView;
 
 public class HourlyWeather {
     private AlwaysMarqueeTextView time;
