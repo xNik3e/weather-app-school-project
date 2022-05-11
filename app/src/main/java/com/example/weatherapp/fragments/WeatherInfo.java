@@ -95,7 +95,7 @@ public class WeatherInfo extends Fragment {
         setFragment(R.id.realtime_weather_detail, realtimeWeatherDetail, fragmentManager);
     }
 
-    private void setFragment(int container, Fragment fragment, FragmentManager fm){
+    private void setFragment(int container, Fragment fragment, FragmentManager fm) {
         fm.beginTransaction().replace(container, fragment).commit();
     }
 }

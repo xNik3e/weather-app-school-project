@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,8 +17,6 @@ import android.widget.TextView;
 
 import com.example.weatherapp.fragments.WeatherInfo;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import java.nio.InvalidMarkException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,10 +49,17 @@ public class MainActivity extends AppCompatActivity {
         settings = findViewById(R.id.menu_more);
         gpsTip = findViewById(R.id.gps_tip);
         btnGPSSettings = findViewById(R.id.button_gps_settings);
-
         fragmentManager = getSupportFragmentManager();
         weatherInfo = new WeatherInfo();
         setFragment(weatherInfo, fragmentManager);
+
+        selectCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CityListActivity.class));
+            }
+        });
+
     }
 
     public void openGPSSettings(View view) {
