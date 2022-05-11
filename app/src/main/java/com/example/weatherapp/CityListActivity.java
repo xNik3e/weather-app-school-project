@@ -98,9 +98,7 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
         if (liveDataListValue != null && !liveDataListValue.isEmpty()) {
             models.clear();
             models.addAll(liveDataListValue);
-            checkIfLocated();
         }
-
         if (models.isEmpty()) {
             hint.setVisibility(View.VISIBLE);
             cities.setVisibility(View.GONE);
@@ -108,27 +106,15 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
             hint.setVisibility(View.GONE);
             cities.setVisibility(View.VISIBLE);
         }
-        adapter = new CityListAdapter(this, models);
 
+        adapter = new CityListAdapter(this, models);
         cities.setLayoutManager(linearLayoutManager);
         cities.setAdapter(adapter);
-
-        data.observe(this, new Observer<List<CityWeatherModel>>() {
-            @Override
-            public void onChanged(List<CityWeatherModel> modelList) {
-                if (modelList != null && modelList.size() == models.size()) {
-                    cityWeatherViewModel.replaceCityData(modelList);
-                }
-            }
-        });
-
-        swipe.setOnRefreshListener(this);
-
 
         iconContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                startActivity(new Intent(CityListActivity.this, MainActivity.class));
             }
         });
 
@@ -139,6 +125,17 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
             }
         });
 
+        swipe.setOnRefreshListener(this);
+
+        data.observe(this, new Observer<List<CityWeatherModel>>() {
+            @Override
+            public void onChanged(List<CityWeatherModel> modelList) {
+                if (modelList != null && modelList.size() == models.size()) {
+                    cityWeatherViewModel.replaceCityData(modelList);
+                }
+            }
+        });
+
         cityWeatherViewModel.getCityWeatherModels().observe(this, new Observer<List<CityWeatherModel>>() {
             @Override
             public void onChanged(List<CityWeatherModel> modelList) {
@@ -146,14 +143,15 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
                 cityWeatherViewModel.getIsUpdating().observe(CityListActivity.this, new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-                        if (aBoolean) {
+                        if(aBoolean){
                             //maybe add progressbar
-                        } else {
+                        }else{
+                            //add later
                             models.clear();
-                            models.addAll(Objects.requireNonNull(cityWeatherViewModel.getCityWeatherModels().getValue()));
+                            models.addAll(cityWeatherViewModel.getCityWeatherModels().getValue());
                             adapter.notifyDataSetChanged();
                             cities.scrollToPosition(0);
-                            if (swipe.isRefreshing()) {
+                            if(swipe.isRefreshing()){
                                 swipe.setRefreshing(false);
                                 Toast.makeText(CityListActivity.this, "Everything is up to date ^^", Toast.LENGTH_SHORT).show();
                             }
@@ -166,35 +164,9 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
                 });
             }
         });
-    }
-
-    //check if List<CityWeatherModel> has element with getCityModel().getLocated() == true and if yes add it to the beginning of the list and update the adapter
-    private void checkIfLocated() {
-        CityWeatherModel locatedModel = null;
-        for (CityWeatherModel m : models) {
-            if (m.getCityModel().isLocated())
-                locatedModel = m;
-        }
-        if (locatedModel != null && models.indexOf(locatedModel) != 0) {
-            models.remove(locatedModel);
-            models.add(0, locatedModel);
-            cityWeatherViewModel.replaceCityData(models);
-        }
 
     }
 
-
-    @Override
-    public void deleteItem(int position) {
-        //delete item from models by its position, then update the viewmodel
-        models.remove(position);
-        cityWeatherViewModel.replaceCityData(models);
-    }
-
-    @Override
-    public void selectItem() {
-        Toast.makeText(this, "Kliknięto widok", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void onRefresh() {
@@ -217,6 +189,16 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
         }
     }
 
+    @Override
+    public void deleteItem(int position) {
+        //delete specyfic element and update adapter and LiveData
+    }
+
+    @Override
+    public void selectItem() {
+        //launch main activity with the position intent
+    }
+
     private void getWeather(CityModel model) {
         OneCallWeatherResponse response = weatherSearchViewModel.getWeatherData(apiParams.getWeatherParams(model.getLat(), model.getLon()));
         if (response != null) {
@@ -226,7 +208,4 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
             data.setValue(updatedList);
         }
     }
-
-
-
 }

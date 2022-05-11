@@ -479,7 +479,8 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
                 if (!finalModels.isEmpty())
                     cityWeatherViewModel.replaceCityData(this.finalModels);
                 else {
-                    cityWeatherViewModel.addNewCity(this.cityWeatherModel);
+                    tempLiveModels.add(0, this.cityWeatherModel);
+                    cityWeatherViewModel.replaceCityData(tempLiveModels);
                 }
             } else {
                 cityWeatherViewModel.addNewCity(this.cityWeatherModel);
