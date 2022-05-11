@@ -25,6 +25,7 @@ public class CityWeatherRepository {
     private static SharedPreferences preferences;
     private static List<CityWeatherModel> dataSet = new ArrayList<>();
 
+
     public static CityWeatherRepository getInstance(){
         if(instance == null)
             instance = new CityWeatherRepository();
@@ -38,6 +39,8 @@ public class CityWeatherRepository {
         return data;
     }
 
+
+
     private void retrieveCityWeatherModel(Context context){
         //get data from shared preference
         preferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
@@ -49,7 +52,7 @@ public class CityWeatherRepository {
             dataSet = tempModels;
     }
 
-    public void saveCityWeatherModel(Context context, List<CityWeatherModel> data){
+    public boolean saveCityWeatherModel(Context context, List<CityWeatherModel> data){
         //save data to share preference
         preferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();
@@ -58,5 +61,7 @@ public class CityWeatherRepository {
         String json = gson.toJson(data);
         editor.putString("SerializableWeatherData", json);
         editor.apply();
+        return false;
     }
+
 }

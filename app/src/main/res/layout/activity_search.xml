@@ -54,7 +54,6 @@
             app:clearButtonWidth="24dp" />
     </com.google.android.material.appbar.MaterialToolbar>
 
-
     <LinearLayout
         android:id="@+id/located_city_content"
         android:layout_width="match_parent"

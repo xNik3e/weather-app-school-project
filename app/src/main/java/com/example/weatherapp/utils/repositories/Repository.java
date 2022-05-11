@@ -65,4 +65,22 @@ public class Repository {
         }
         return oneCallWeatherResponse;
     }
+
+    public OneCallWeatherResponse fetchCurrentWeatherDataAsync(Map<String, String> params){
+        final OneCallWeatherResponse[] oneCallResponse = {new OneCallWeatherResponse()};
+        Call<OneCallWeatherResponse> call = apiService.getCurrentWeatherData(params);
+        call.enqueue(new Callback<OneCallWeatherResponse>() {
+            @Override
+            public void onResponse(Call<OneCallWeatherResponse> call, Response<OneCallWeatherResponse> response) {
+                if(response.isSuccessful())
+                    oneCallResponse[0] = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<OneCallWeatherResponse> call, Throwable t) {
+
+            }
+        });
+        return oneCallResponse[0];
+    }
 }

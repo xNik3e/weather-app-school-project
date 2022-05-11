@@ -8,7 +8,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="135dp"
         android:clickable="true"
         android:id="@+id/whole_container"
         android:focusable="true"
@@ -25,7 +25,9 @@
                 android:layout_height="match_parent"
                 android:id="@+id/city_theme"
                 android:src="@drawable/bkg_cloudy_night"
-                android:scaleType="centerCrop"/>
+                android:tintMode="src_over"
+                android:scaleType="centerCrop"
+                />
 
             <RelativeLayout
                 android:layout_width="match_parent"

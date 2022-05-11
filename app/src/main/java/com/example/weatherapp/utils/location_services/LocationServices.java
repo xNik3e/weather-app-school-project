@@ -50,7 +50,7 @@ public class LocationServices implements LocationListener {
         try {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 //               ActivityCompat.requestPermissions((Activity) context, new String[]{"android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"}, 123);
-                requestLocationPermission();
+                //requestLocationPermission();
             }
             this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
             this.isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -154,7 +154,7 @@ public class LocationServices implements LocationListener {
         dialog.show();
     }
 
-    private void requestLocationPermission() {
+    /*private void requestLocationPermission() {
         if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) context, Manifest.permission.ACCESS_FINE_LOCATION)) {
             final MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(context);
             builder.setMessage(R.string.GPS_permissions).setCancelable(false).setPositiveButton(R.string.btn_yes, new DialogInterface.OnClickListener() {
@@ -179,5 +179,5 @@ public class LocationServices implements LocationListener {
                 }
             }).show();
         }
-    }
+    }*/
 }

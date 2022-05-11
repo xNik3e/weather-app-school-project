@@ -55,28 +55,38 @@
         android:layout_height="2px"
         android:background="@color/divider" />
 
-    <RelativeLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/cities_layout"
-        android:layout_below="@id/upper_divider"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:saveEnabled="false">
+        android:layout_below="@id/toolbar"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cities"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:paddingStart="@dimen/control_margin2"
-            android:paddingTop="@dimen/control_padding_space3"
-            android:paddingEnd="@dimen/control_margin2"
-            android:paddingBottom="@dimen/control_padding_space3"
-            android:scrollbars="none" />
+            android:id="@+id/cities_layout"
+            android:layout_below="@id/upper_divider"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:saveEnabled="false">
 
-    </RelativeLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cities"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:paddingStart="@dimen/control_margin2"
+                android:paddingTop="@dimen/control_padding_space3"
+                android:paddingEnd="@dimen/control_margin2"
+                android:paddingBottom="@dimen/control_padding_space3"
+                android:scrollbars="none" />
+
+        </RelativeLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="@dimen/fab_standard_size"
         android:layout_height="@dimen/fab_standard_size"
