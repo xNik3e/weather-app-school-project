@@ -20,8 +20,8 @@ import android.widget.Space;
 import android.widget.TextView;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.utils.AlwaysMarqueeTextView;
-import com.example.weatherapp.utils.MyWeatherTemperatureView;
+import com.example.weatherapp.utils.view_services.AlwaysMarqueeTextView;
+import com.example.weatherapp.utils.view_services.MyWeatherTemperatureView;
 
 public class WeatherInfo extends Fragment {
 

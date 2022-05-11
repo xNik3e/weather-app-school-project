@@ -15,14 +15,14 @@
         android:layout_height="@dimen/control_list_item_height_two_line"
         android:orientation="horizontal">
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_precipitation_probability"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:weatherType="@string/single_precipitationprobability" />
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_precipitation"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -35,13 +35,13 @@
         android:layout_height="@dimen/control_list_item_height_two_line"
         android:orientation="horizontal">
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_wind_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1" />
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_bodytemp_view"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -54,14 +54,14 @@
         android:layout_height="@dimen/control_list_item_height_two_line"
         android:orientation="horizontal">
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_hum"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:weatherType="@string/single_humidity" />
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_visibility"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -74,14 +74,14 @@
         android:layout_height="@dimen/control_list_item_height_two_line"
         android:orientation="horizontal">
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_uv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             app:weatherType="@string/single_uv" />
 
-        <com.example.weatherapp.utils.WeatherSingleInfoView
+        <com.example.weatherapp.utils.view_services.WeatherSingleInfoView
             android:id="@+id/single_pressure"
             android:layout_width="0dp"
             android:layout_height="match_parent"

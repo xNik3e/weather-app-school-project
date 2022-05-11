@@ -1,99 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/control_padding_space3"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardCornerRadius="4dp"
-    android:background="@color/transparent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="135dp"
-        android:id="@+id/front">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/city_theme"
-            android:src="@drawable/bkg_cloudy_night"
-            android:scaleType="centerCrop"/>
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:id="@+id/whole_container"
+        android:focusable="true"
+        app:cardCornerRadius="8dp"
+        android:background="@android:color/transparent">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/control_margin2"
-            android:paddingTop="@dimen/control_margin1"
-            android:paddingEnd="@dimen/control_margin2"
-            android:paddingBottom="@dimen/control_margin1">
+            android:layout_height="135dp"
+            android:id="@+id/front">
 
             <ImageView
-                android:id="@+id/current_location"
-                android:layout_width="@dimen/control_icon_size_button"
-                android:layout_height="@dimen/control_icon_size_button"
-                android:layout_alignParentStart="true"
-                android:layout_marginEnd="@dimen/control_padding_space2"
-                android:src="@drawable/ic_gps" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/city_theme"
+                android:src="@drawable/bkg_cloudy_night"
+                android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/city_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/current_location"
-                android:layout_toEndOf="@id/current_location"
-                android:layout_toRightOf="@id/current_location"
-                android:singleLine="true"
-                android:textAppearance="@style/control_text_style_title"
-                android:textColor="@color/text_primary_dark"
-                tools:text="Warszawa" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/control_margin2"
+                android:paddingTop="@dimen/control_margin1"
+                android:paddingEnd="@dimen/control_margin2"
+                android:paddingBottom="@dimen/control_margin1">
 
-            <TextView
-                android:id="@+id/delete_city"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@id/current_location"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/ripple_mask"
-                android:fontFamily="@string/control_font_family_toolbar"
-                android:foreground="@drawable/background_transparent"
-                android:gravity="center"
-                android:paddingStart="@dimen/control_padding_space2"
-                android:paddingEnd="@dimen/control_padding_space2"
-                android:singleLine="true"
-                android:text="@string/settings_delete"
-                android:textAllCaps="true"
-                android:textColor="@color/text_primary_dark" />
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/city_name"
-                android:layout_marginTop="2dp"
-                android:orientation="horizontal">
-
+                <ImageView
+                    android:id="@+id/current_location"
+                    android:layout_width="@dimen/control_icon_size_button"
+                    android:layout_height="@dimen/control_icon_size_button"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginEnd="@dimen/control_padding_space2"
+                    android:src="@drawable/ic_gps" />
 
                 <TextView
-                    android:id="@+id/city_temp"
+                    android:id="@+id/city_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textAppearance="@style/control_text_under_display"
+                    android:layout_alignBaseline="@id/current_location"
+                    android:layout_toEndOf="@id/current_location"
+                    android:layout_toRightOf="@id/current_location"
+                    android:singleLine="true"
+                    android:textAppearance="@style/control_text_style_title"
                     android:textColor="@color/text_primary_dark"
-                    tools:text="18°C" />
+                    tools:text="Warszawa" />
 
                 <TextView
-                    android:id="@+id/weather_type"
+                    android:id="@+id/delete_city"
+                    style="@style/control_text_style_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/control_margin1"
-                    android:textAppearance="@style/control_text_under_display"
-                    android:textColor="@color/text_primary_dark"
-                    tools:text="Cloudy" />
-            </LinearLayout>
+                    android:layout_alignBaseline="@id/current_location"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/ripple_mask"
+                    android:fontFamily="@string/control_font_family_toolbar"
+                    android:foreground="@drawable/background_transparent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/control_padding_space2"
+                    android:paddingEnd="@dimen/control_padding_space2"
+                    android:singleLine="true"
+                    android:text="@string/settings_delete"
+                    android:textAllCaps="true"
+                    android:textColor="@color/text_primary_dark" />
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/city_name"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/city_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAppearance="@style/control_text_under_display"
+                        android:textColor="@color/text_primary_dark"
+                        tools:text="18°C" />
+
+                    <TextView
+                        android:id="@+id/weather_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/control_margin1"
+                        android:textAppearance="@style/control_text_under_display"
+                        android:textColor="@color/text_primary_dark"
+                        tools:text="Cloudy" />
+                </LinearLayout>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
-</androidx.cardview.widget.CardView>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -71,9 +71,9 @@
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingStart="@dimen/control_margin2"
-            android:paddingTop="@dimen/control_padding_space2"
+            android:paddingTop="@dimen/control_padding_space3"
             android:paddingEnd="@dimen/control_margin2"
-            android:paddingBottom="@dimen/control_padding_space2"
+            android:paddingBottom="@dimen/control_padding_space3"
             android:scrollbars="none" />
 
     </RelativeLayout>
@@ -102,7 +102,7 @@
         android:textAppearance="@style/control_text_under_display"
         android:textColor="@color/icon_color_active_dark"
         android:textSize="16sp"
-        android:visibility="gone"/>
+        android:visibility="visible"/>
 
 
 

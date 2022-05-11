@@ -19,4 +19,38 @@
     <color name="transparent" tools:ignore="MissingDefaultResource">#00000000</color>
     <color name="divider">#1effffff</color>
     <color name="accent_color">#2196f3</color>
+
+
+    <color name="weather_downpour_rain">#ff1865b4</color>
+    <color name="weather_downpour_rain_night">#ff002244</color>
+    <color name="weather_drizzle_rain">#ff1899b9</color>
+    <color name="weather_drizzle_rain_night">#ff002244</color>
+    <color name="weather_dust">#ffa59056</color>
+    <color name="weather_dust_night">#ff312820</color>
+    <color name="weather_fog">#ff617d8f</color>
+    <color name="weather_fog_night">#ff2a383f</color>
+    <color name="weather_hail">#ff7c7699</color>
+    <color name="weather_hail_night">#ff7c7699</color>
+    <color name="weather_haze">#ff475d6a</color>
+    <color name="weather_haze_night">#ff272b2d</color>
+    <color name="weather_night_arc_cloudy">#ff2563bb</color>
+    <color name="weather_night_arc_dust">#ff78582b</color>
+    <color name="weather_night_arc_fog">#ff3b4751</color>
+    <color name="weather_night_arc_hail">#ff4c4570</color>
+    <color name="weather_night_arc_overcast">#ff495257</color>
+    <color name="weather_night_arc_rain">#ff0c328e</color>
+    <color name="weather_night_arc_snow">#ff1842b4</color>
+    <color name="weather_night_arc_sun">#ff2563bb</color>
+    <color name="weather_night_arc_wind">#ff4c6c9d</color>
+    <color name="weather_overcast">#ff93a4ae</color>
+    <color name="weather_overcast_night">#ff171e26</color>
+    <color name="weather_rain">#ff116c9b</color>
+    <color name="weather_rain_night">#ff002244</color>
+    <color name="weather_shower_rain">#ff190c38</color>
+    <color name="weather_shower_rain_night">#ff002244</color>
+    <color name="weather_snow">#ff3081cd</color>
+    <color name="weather_snow_night">#ff132f45</color>
+    <color name="weather_storm_rain">#ff101238</color>
+    <color name="weather_sun">#ff4a97d2</color>
+    <color name="weather_sun_night">#ff051325</color>
 </resources>
