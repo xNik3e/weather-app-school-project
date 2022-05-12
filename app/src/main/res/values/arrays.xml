@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="temperature_list_preference">
+        <item>@string/celsius</item>
+        <item>@string/fahrenheit</item>
+    </array>
+
+    <array name="entry_temperature_list_preference">
+        <item>°C</item>
+        <item>°F</item>
+    </array>
+
+    <array name="wind_list_preference">
+        <item>@string/kilometers_per_hour</item>
+        <item>@string/meters_per_second</item>
+        <item>@string/foot_per_second</item>
+        <item>@string/miles_per_hour</item>
+    </array>
+
+    <array name="entry_wind_list_preference">
+        <item>km/h</item>
+        <item>m/s</item>
+        <item>ft/s</item>
+        <item>mph</item>
+    </array>
+
+    <array name="precipitation_list_preference">
+        <item>@string/millimeter</item>
+        <item>@string/inch</item>
+    </array>
+
+    <array name="entry_precipitation_list_preference">
+        <item>mm</item>
+        <item>in</item>
+    </array>
+
+    <array name="visibility_list_preference">
+        <item>@string/kilometers</item>
+        <item>@string/miles</item>
+    </array>
+
+    <array name="entry_visibility_list_preference">
+        <item>km</item>
+        <item>mi</item>
+    </array>
+
+
+
+</resources>

@@ -149,7 +149,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         iconContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchActivity.super.onBackPressed();
+                goToActivity();
             }
         });
 

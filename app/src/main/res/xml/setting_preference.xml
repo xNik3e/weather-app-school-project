@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:dialogTitle="@string/temperature"
+        android:entries="@array/temperature_list_preference"
+        android:entryValues="@array/entry_temperature_list_preference"
+        android:key="settings_preference_temperature"
+        android:summary="@string/temperature"
+        android:title="@string/temperature" />
+    <ListPreference
+        android:dialogTitle="@string/wind"
+        android:entries="@array/wind_list_preference"
+        android:entryValues="@array/entry_wind_list_preference"
+        android:key="settings_preference_wind"
+        android:summary="@string/wind"
+        android:title="@string/wind" />
+    <ListPreference
+        android:dialogTitle="@string/precipitation"
+        android:entries="@array/precipitation_list_preference"
+        android:entryValues="@array/entry_precipitation_list_preference"
+        android:key="settings_preference_precipitation"
+        android:summary="@string/precipitation"
+        android:title="@string/precipitation" />
+    <ListPreference
+        android:dialogTitle="@string/visibility"
+        android:entries="@array/visibility_list_preference"
+        android:entryValues="@array/entry_visibility_list_preference"
+        android:key="settings_preference_visibility"
+        android:summary="@string/visibility"
+        android:title="@string/visibility" />
+    <Preference
+        android:key="settings_preference_about"
+        android:title="@string/about"
+        />
+
+
+
+
+</androidx.preference.PreferenceScreen>

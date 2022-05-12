@@ -78,8 +78,9 @@ public enum WeatherType {
             default:
                 throw new IllegalStateException("Unexpected value: " + this);
         }
-
     }
+
+
 
 
 }

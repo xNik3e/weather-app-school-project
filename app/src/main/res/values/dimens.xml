@@ -22,11 +22,13 @@
     <dimen name="control_margin4">27dp</dimen>
     <dimen name="control_margin5">64dp</dimen>
     <dimen name="control_margin6">6dp</dimen>
+    <dimen name="control_margin7">22dp</dimen>
     <dimen name="fab_standard_size">64dp</dimen>
     <dimen name="temperature_text_point_space">7dp</dimen>
     <dimen name="weather_page_padding">11dp</dimen>
     <dimen name="weather_page_padding2">14dp</dimen>
     <dimen name="control_list_item_height_two_line">73dp</dimen>
+    <dimen name="control_list_item_height_one_line">64dp</dimen>
 
 
 </resources>

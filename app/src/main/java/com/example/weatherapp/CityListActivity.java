@@ -90,8 +90,6 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
         cityWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CityWeatherViewModel.class);
         weatherSearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(WeatherSearchViewModel.class);
 
-        cityWeatherViewModel.init(this);
-
         LiveData<List<CityWeatherModel>> liveDataList = cityWeatherViewModel.getCityWeatherModels();
         List<CityWeatherModel> liveDataListValue = liveDataList.getValue();
 
@@ -173,6 +171,7 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
         NetworkInfo activeNetworkInfo = CityListActivity.this.connectivityManager.getActiveNetworkInfo();
         if (activeNetworkInfo == null || !activeNetworkInfo.isAvailable()) {
             Toast.makeText(this, getResources().getString(R.string.no_network), Toast.LENGTH_SHORT).show();
+            swipe.setRefreshing(false);
         } else {
             if (models != null && models.isEmpty()) {
                 swipe.setRefreshing(false);
@@ -191,7 +190,11 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
 
     @Override
     public void deleteItem(int position) {
-        //delete specyfic element and update adapter and LiveData
+        Toast.makeText(this, "Deleted " + models.get(position).getCityModel().getFreeFormAddress(), Toast.LENGTH_SHORT).show();
+        List<CityWeatherModel> tempList = new ArrayList<>();
+        tempList.addAll(models);
+        tempList.remove(models.get(position));
+        cityWeatherViewModel.replaceCityData(tempList);
     }
 
     @Override

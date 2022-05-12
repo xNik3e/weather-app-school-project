@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <style name="control_text_style_title">
         <item name="android:textSize">@dimen/control_text_size_title</item>
         <item name="android:lineSpacingMultiplier">1.03</item>
@@ -96,4 +96,6 @@
         <item name="android:paddingEnd">22dp</item>
         <item name="android:elevation">0.8dp</item>
     </style>
+
+
 </resources>

@@ -28,7 +28,6 @@ public class ApiParams {
         this.weatherParams.put("exclude", "alerts,minutely");
         this.weatherParams.put("appid", "9da165e7a2d95c865045f4cc7a492a2c");
         this.weatherParams.put("units", "metric");
-        this.weatherParams.put("lang", "pl");
     }
 
     public Map<String, String> getGeoParams() {

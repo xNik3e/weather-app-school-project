@@ -179,4 +179,12 @@ public class EnumHelper {
         }
         return temp;
     }
+
+    public static boolean isDay(int sunset, int dateTime, int sunrise){
+
+        if(dateTime >= sunrise && dateTime <= sunset)
+            return true;
+        else
+            return false;
+    }
 }
