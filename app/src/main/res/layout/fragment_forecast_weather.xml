@@ -56,16 +56,14 @@
             android:layout_column="4"
             android:layout_height="0dp"
             android:layout_width="0dp" />
-
         <include
             android:id="@+id/day6"
             style="@style/control_weather_grid_item"
             layout="@layout/forecast_daily_weather"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
             android:layout_row="0"
-            android:layout_column="5" />
-
+            android:layout_column="5"
+            android:layout_height="0dp"
+            android:layout_width="0dp" />
 
     </GridLayout>
 

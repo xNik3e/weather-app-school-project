@@ -125,9 +125,9 @@ public class ForecastWeather extends Fragment {
 
         //Handle updating views
         for (int i = 0; i < 6; i++) {
-            setDate(dates.get(i), days.get(i), items.get(i + 1).getDt());
-            setDescription(descriptions.get(i), items.get(i + 1).getWeather().get(0).getDescription());
-            WeatherEnum weatherEnum = EnumHelper.getResourcesByWeatherId(items.get(i + 1).getWeather().get(0).getId());
+            setDate(dates.get(i), days.get(i), items.get(i).getDt());
+            setDescription(descriptions.get(i), items.get(i).getWeather().get(0).getDescription());
+            WeatherEnum weatherEnum = EnumHelper.getResourcesByWeatherId(items.get(i).getWeather().get(0).getId());
             int iconId = weatherEnum.getWeatherIconResId();
             setIcon(icons.get(i), iconId);
         }
@@ -149,25 +149,25 @@ public class ForecastWeather extends Fragment {
         String dayS = "";
         switch (day) {
             case 1:
-                dayS = "Sunday";
+                dayS = "Sun";
                 break;
             case 2:
-                dayS = "Monday";
+                dayS = "Mon";
                 break;
             case 3:
-                dayS = "Tuesday";
+                dayS = "Tue";
                 break;
             case 4:
-                dayS = "Wednesday";
+                dayS = "Wed";
                 break;
             case 5:
-                dayS = "Thursday";
+                dayS = "Thu";
                 break;
             case 6:
-                dayS = "Friday";
+                dayS = "Fri";
                 break;
             case 7:
-                dayS = "Saturday";
+                dayS = "Sat";
                 break;
         }
         setDay(textView_day, dayS);

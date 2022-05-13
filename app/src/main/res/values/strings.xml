@@ -20,16 +20,17 @@
     <string name="single_visibility">Visibility</string>
     <string name="single_pressure">Pressure</string>
     <string name="single_uv">UV</string>
+
     <string name="api_wind_direction_e">East wind</string>
     <string name="api_wind_direction_ene">ENE wind</string>
     <string name="api_wind_direction_ese">ESE wind</string>
     <string name="api_wind_direction_n">North wind</string>
-    <string name="api_wind_direction_na">No sustained wind direction</string>
+
     <string name="api_wind_direction_ne">NE wind</string>
     <string name="api_wind_direction_nne">NNE wind</string>
     <string name="api_wind_direction_nw">NW wind</string>
-    <string name="api_wind_direction_nwn">NNW wind</string>
-    <string name="api_wind_direction_rw">Swirling wind</string>
+    <string name="api_wind_direction_nnw">NNW wind</string>
+
     <string name="api_wind_direction_s">South wind</string>
     <string name="api_wind_direction_se">SE wind</string>
     <string name="api_wind_direction_sse">SSE wind</string>
@@ -38,6 +39,11 @@
     <string name="api_wind_direction_w">West wind</string>
     <string name="api_wind_direction_wnw">WNW wind</string>
     <string name="api_wind_direction_wsw">WSW wind</string>
+
+    <string name="api_wind_direction_rw">Swirling wind</string>
+    <string name="api_wind_direction_na">No sustained wind direction</string>
+
+
     <string name="no_cities">No Cities</string>
     <string name="settings_delete">Delete</string>
     <string name="select_cities">Select city</string>

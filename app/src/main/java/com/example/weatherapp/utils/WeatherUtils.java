@@ -46,21 +46,19 @@ public class WeatherUtils {
 
     public static Map<String, Double> convertWind(Context context, double val) {
         SharedPreferences preferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
-        String wind = preferences.getString("settings_preference_wind", "km/h");
-
+        String wind = preferences.getString("settings_preference_wind", "m/s");
         Map<String, Double> mWind = new HashMap<>();
         double newVal;
 
-        switch (wind) {
-            case "km/h":
-                newVal = val;
-            case "m/s":
-                newVal = (val * 5 / 18);
-            case "ft/s":
-                newVal = (val * 0.911344);
-            default:
-                newVal = (val / 1.609344);
-        }
+        if(wind.equals("m/s"))
+            newVal = val;
+        else if(wind.equals("km/h"))
+            newVal = (val * 3.6);
+        else if(wind.equals("ft/s"))
+            newVal = (val * 3.28084);
+        else
+            newVal = (val * 2.2369);
+
         mWind.put(wind, newVal);
         return mWind;
     }

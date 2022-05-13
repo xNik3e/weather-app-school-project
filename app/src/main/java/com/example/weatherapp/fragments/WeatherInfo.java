@@ -131,15 +131,11 @@ public class WeatherInfo extends Fragment {
         Map<String, Double> params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getCurrent().getFeelsLike());
         currentTemperature.setText("Feels like\n" + (int)WeatherUtils.getValue(params)+WeatherUtils.getKey(params));
         currentWeatherType.setText(finalModel.getCurrentWeather().getCurrent().getWeather().get(0).getMain());
-        params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getCurrent().getTemp());
+        params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getDaily().get(0).getTemp().getDay());
         currentHighTemperature.setText((int)WeatherUtils.getValue(params)+"");
 
-        List<Double> temp = new ArrayList<>();
-        for(HourlyItem h :finalModel.getCurrentWeather().getHourly()){
-            temp.add(h.getTemp());
-        }
-        Collections.sort(temp);
-        params = WeatherUtils.convertTemp(getContext(), temp.get(0));
+
+        params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getDaily().get(0).getTemp().getNight());
         currentLowTemperature.setText((int)WeatherUtils.getValue(params)+ WeatherUtils.getKey(params));
 
 
@@ -148,8 +144,19 @@ public class WeatherInfo extends Fragment {
 
         forecastWeather = new ForecastWeather(dailyItems);
 
+        List<Integer> dayTemp = new ArrayList<>();
+        List<Integer> nightTemp = new ArrayList<>();
+        for(int i = 0; i < 6; i++){
+            dayTemp.add((int)dailyItems.get(i).getTemp().getDay());
+            nightTemp.add((int)dailyItems.get(i).getTemp().getNight());
+        }
+        weatherTempView.addData(dayTemp, nightTemp);
+
+        //Add this lastly
         hourForecast = new HourForecast();
-        realtimeWeatherDetail = new RealtimeWeatherDetail();
+
+
+        realtimeWeatherDetail = new RealtimeWeatherDetail(finalModel.getCurrentWeather());
 
         fragmentManager = getChildFragmentManager();
 
