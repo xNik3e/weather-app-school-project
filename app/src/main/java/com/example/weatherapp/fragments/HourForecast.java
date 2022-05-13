@@ -28,6 +28,7 @@ public class HourForecast extends Fragment {
     private static List<HourlyFragmentModel> hourlyWeatherList = new ArrayList<>();
 
     public HourForecast(List<HourlyFragmentModel> models){
+        hourlyWeatherList.clear();
         this.hourlyWeatherList.addAll(models);
     }
 
@@ -39,6 +40,7 @@ public class HourForecast extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
+
     }
 
     @Override

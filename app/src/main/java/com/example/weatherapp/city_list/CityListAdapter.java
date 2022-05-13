@@ -32,8 +32,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.ViewHo
 
     public interface CityListInterface {
         void deleteItem(int position);
-
-        void selectItem();
+        void selectItem(int position);
     }
 
     public CityListAdapter(Context context, List<CityWeatherModel> models) {
@@ -123,7 +122,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.ViewHo
             wholeContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listInterface.selectItem();
+                    listInterface.selectItem(getAdapterPosition());
                 }
             });
 

@@ -87,7 +87,7 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
     private static final int SUNRISE = 0;
     private static final int SUNSET = 1;
     private static final int NONE = -1;
-    private static List<HourlyFragmentModel> hourlyFragmentModelList = new ArrayList<>();
+    private List<HourlyFragmentModel> hourlyFragmentModelList = new ArrayList<>();
     private List<CityWeatherModel> updatedList = new ArrayList<>();
     private List<CityWeatherModel> models = new ArrayList<>();
     private MutableLiveData<List<CityWeatherModel>> data = new MutableLiveData<>();

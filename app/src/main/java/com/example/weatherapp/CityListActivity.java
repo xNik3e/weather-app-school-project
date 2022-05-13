@@ -198,7 +198,10 @@ public class CityListActivity extends AppCompatActivity implements CityListAdapt
     }
 
     @Override
-    public void selectItem() {
+    public void selectItem(int position) {
+        Intent intent = new Intent(CityListActivity.this, MainActivity.class);
+        intent.putExtra("POSITION", position);
+        startActivity(intent);
         //launch main activity with the position intent
     }
 

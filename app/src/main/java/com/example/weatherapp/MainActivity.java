@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
     private List<CityWeatherModel> models = new ArrayList<>();
     private boolean isGit = false;
     private PagerAdapter pagerAdapter;
+    private static int position = 0;
 
     private final static int OPNETWORK = 0;
     private final static int OPNOCITIES = 1;
@@ -68,6 +69,12 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+
+        Intent intent = getIntent();
+        if(intent.hasExtra("POSITION"))
+        {
+            this.position = intent.getIntExtra("POSITION", 0);
+        }
 
         cityWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CityWeatherViewModel.class);
         weatherSearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(WeatherSearchViewModel.class);
@@ -95,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
 
         if (liveDataListValue != null && !liveDataListValue.isEmpty()) {
             fragmentManager = getSupportFragmentManager();
-            weatherInfo = new WeatherInfo(0);
+            weatherInfo = new WeatherInfo(this.position);
             //viewPager.setAdapter(pagerAdapter);
             setFragment(weatherInfo, fragmentManager);
         } else {
