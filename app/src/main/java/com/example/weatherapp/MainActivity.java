@@ -9,6 +9,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 
 import com.example.weatherapp.city_list.CityWeatherModel;
 import com.example.weatherapp.fragments.WeatherInfo;
+import com.example.weatherapp.utils.ViewPagerAdapter;
 import com.example.weatherapp.utils.viewmodels.CityWeatherViewModel;
 import com.example.weatherapp.utils.viewmodels.ViewModelFactory;
 import com.example.weatherapp.utils.viewmodels.WeatherSearchViewModel;
@@ -42,7 +45,10 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
     private FrameLayout mainViewBackground;
     private FrameLayout weather;
     private FrameLayout toolbarIconContainer;
-    private ViewPager viewPager;
+
+    private ViewPager2 viewPager;
+    private FragmentStateAdapter pagerAdapter;
+
     private MaterialToolbar toolbar;
     private ImageView ic_gps;
     private TextView toolbarTitle;
@@ -57,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
     private WeatherSearchViewModel weatherSearchViewModel;
     private List<CityWeatherModel> models = new ArrayList<>();
     private boolean isGit = false;
-    private PagerAdapter pagerAdapter;
+
     private static int position = 0;
 
     private final static int OPNETWORK = 0;
@@ -74,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
         if(intent.hasExtra("POSITION"))
         {
             this.position = intent.getIntExtra("POSITION", 0);
+
         }
 
         cityWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CityWeatherViewModel.class);
@@ -101,10 +108,40 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
         List<CityWeatherModel> liveDataListValue = liveDataList.getValue();
 
         if (liveDataListValue != null && !liveDataListValue.isEmpty()) {
-            fragmentManager = getSupportFragmentManager();
+            /*fragmentManager = getSupportFragmentManager();
             weatherInfo = new WeatherInfo(this.position);
             //viewPager.setAdapter(pagerAdapter);
-            setFragment(weatherInfo, fragmentManager);
+            setFragment(weatherInfo, fragmentManager);*/
+            pagerAdapter = new ViewPagerAdapter(this, liveDataListValue.size());
+            viewPager.setAdapter(pagerAdapter);
+            viewPager.setCurrentItem(position);
+
+            viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+                int currentPosition = 0;
+                @Override
+                public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                    super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                    WeatherInfo fragmentShow = (WeatherInfo) getSupportFragmentManager().findFragmentByTag("f" + position);
+                    fragmentShow.onResumeFragment();
+                    currentPosition = position;
+                }
+
+                @Override
+                public void onPageSelected(int position) {
+                    super.onPageSelected(position);
+                    WeatherInfo fragmentShow = (WeatherInfo) getSupportFragmentManager().findFragmentByTag("f" + position);
+                    fragmentShow.onResumeFragment();
+
+                    currentPosition = position;
+                }
+
+                @Override
+                public void onPageScrollStateChanged(int state) {
+                    super.onPageScrollStateChanged(state);
+                }
+            });
+
+
         } else {
             showAlert(R.string.no_city_data, R.string.ok_city, R.string.CANCEL, OPNOCITIES, false);
         }
@@ -158,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (OPTYPE == OPNOCITIES)
-                    finish();
+                    finishAffinity();
                 else {
                     dialog.cancel();
                 }
@@ -222,8 +259,4 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
     }
 
 
-
-    public void changeTextColor(int colorId){
-
-    }
 }
