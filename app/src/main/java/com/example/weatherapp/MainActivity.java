@@ -116,7 +116,6 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
             viewPager.setAdapter(pagerAdapter);
             viewPager.setCurrentItem(position);
 
-
             viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
                 int currentPosition = 0;
                 @Override

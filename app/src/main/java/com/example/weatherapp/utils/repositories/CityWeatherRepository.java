@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  Singleton pattern
+ * Singleton pattern
  */
 
 public class CityWeatherRepository {
@@ -26,13 +26,13 @@ public class CityWeatherRepository {
     private static List<CityWeatherModel> dataSet = new ArrayList<>();
 
 
-    public static CityWeatherRepository getInstance(){
-        if(instance == null)
+    public static CityWeatherRepository getInstance() {
+        if (instance == null)
             instance = new CityWeatherRepository();
         return instance;
     }
 
-    public MutableLiveData<List<CityWeatherModel>> getCityWeatherModel(Context context){
+    public MutableLiveData<List<CityWeatherModel>> getCityWeatherModel(Context context) {
         retrieveCityWeatherModel(context);
         MutableLiveData<List<CityWeatherModel>> data = new MutableLiveData<>();
         data.setValue(dataSet);
@@ -40,19 +40,19 @@ public class CityWeatherRepository {
     }
 
 
-
-    private void retrieveCityWeatherModel(Context context){
+    private void retrieveCityWeatherModel(Context context) {
         //get data from shared preference
         preferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
         Gson gson = new Gson();
         String json = preferences.getString("SerializableWeatherData", "");
-        Type listOfWeatherData = new TypeToken<ArrayList<CityWeatherModel>>() {}.getType();
+        Type listOfWeatherData = new TypeToken<ArrayList<CityWeatherModel>>() {
+        }.getType();
         List<CityWeatherModel> tempModels = gson.fromJson(json, listOfWeatherData);
-        if(tempModels != null && !tempModels.isEmpty() )
+        if (tempModels != null && !tempModels.isEmpty())
             dataSet = tempModels;
     }
 
-    public boolean saveCityWeatherModel(Context context, List<CityWeatherModel> data){
+    public boolean saveCityWeatherModel(Context context, List<CityWeatherModel> data) {
         //save data to share preference
         preferences = context.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE);
         @SuppressLint("CommitPrefEdits") SharedPreferences.Editor editor = preferences.edit();

@@ -185,9 +185,9 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
                             if (swipeRefreshLayout.isRefreshing()) {
                                 swipeRefreshLayout.setRefreshing(false);
                                 Toast.makeText(getContext(), "Everything is up to date ^^", Toast.LENGTH_SHORT).show();
-                                /*Intent intent = new Intent(getActivity(), MainActivity.class);
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
                                 intent.putExtra("POSITION", tabPosition);
-                                startActivity(intent);*/
+                                startActivity(intent);
                             }
                         }
                     }
