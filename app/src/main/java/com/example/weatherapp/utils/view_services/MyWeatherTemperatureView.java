@@ -144,6 +144,24 @@ public class MyWeatherTemperatureView extends View {
         setArrays(dayTemperature, nightTemperature, dayDegrees, nightDegrees);
     }
 
+    public void addData(List<Integer> dayTemp, List<Integer> nightTemp){
+        ArrayList<Integer> dayTemperature = new ArrayList<>(9);
+        dayTemperature.addAll(dayTemp);
+        ArrayList<Integer> nightTemperature = new ArrayList<>(9);
+        nightTemperature.addAll(nightTemp);
+        ArrayList dayDegrees = new ArrayList();
+        for (Integer intValue : dayTemperature) {
+            int intValue2 = intValue.intValue();
+            dayDegrees.add(intValue2 + "°");
+        }
+        ArrayList nightDegrees = new ArrayList();
+        for (Integer intValue3 : nightTemperature) {
+            int intValue4 = intValue3.intValue();
+            nightDegrees.add(intValue4 + "°");
+        }
+        setArrays(dayTemperature, nightTemperature, dayDegrees, nightDegrees);
+    }
+
     public void setArrays(List<Integer> list, List<Integer> list2, List<String> list3, List<String> list4) {
         if (list != null && !list.isEmpty() && list2 != null && !list2.isEmpty()) {
             this.dayTemperature.clear();

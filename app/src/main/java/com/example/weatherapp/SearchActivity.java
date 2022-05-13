@@ -121,13 +121,6 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
 
         cityWeatherViewModel.init(this);
 
-        /*cityWeatherViewModel.getCityWeatherModels().observe(this, new Observer<List<CityWeatherModel>>() {
-            @Override
-            public void onChanged(List<CityWeatherModel> modelList) {
-                //TODO change is made to List of models
-            }
-        });
-*/
         toolbar = findViewById(R.id.toolbar);
         iconContainer = findViewById(R.id.toolbar_icon_container);
         icBack = findViewById(R.id.ic_back);
@@ -156,7 +149,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         iconContainer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchActivity.super.onBackPressed();
+                goToActivity();
             }
         });
 
@@ -469,6 +462,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         LiveData<List<CityWeatherModel>> liveModels = cityWeatherViewModel.getCityWeatherModels();
         List<CityWeatherModel> tempLiveModels = liveModels.getValue();
         //null and empty check
+        cityWeatherModel.setLastUpdate(System.currentTimeMillis()/1000);
         if (tempLiveModels != null && tempLiveModels.isEmpty())
             cityWeatherViewModel.addNewCity(this.cityWeatherModel);
         else {
@@ -485,7 +479,8 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
                 if (!finalModels.isEmpty())
                     cityWeatherViewModel.replaceCityData(this.finalModels);
                 else {
-                    cityWeatherViewModel.addNewCity(this.cityWeatherModel);
+                    tempLiveModels.add(0, this.cityWeatherModel);
+                    cityWeatherViewModel.replaceCityData(tempLiveModels);
                 }
             } else {
                 cityWeatherViewModel.addNewCity(this.cityWeatherModel);
@@ -495,7 +490,17 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
             @Override
             public void onChanged(List<CityWeatherModel> modelList) {
                 cityWeatherViewModel.saveCityData(getBaseContext(), modelList);
-                goToActivity();
+                cityWeatherViewModel.getIsUpdating().observe(SearchActivity.this, new Observer<Boolean>() {
+                    @Override
+                    public void onChanged(Boolean aBoolean) {
+                        if(aBoolean){
+                            //maybe add progressbar
+                        }else{
+                            goToActivity();
+                        }
+                    }
+                });
+
             }
         });
 

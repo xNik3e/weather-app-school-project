@@ -49,8 +49,8 @@ public class LocationServices implements LocationListener {
     public Location getLocation(Context context) {
         try {
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//               ActivityCompat.requestPermissions((Activity) context, new String[]{"android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"}, 123);
-                requestLocationPermission();
+              ActivityCompat.requestPermissions((Activity) context, new String[]{"android.permission.ACCESS_FINE_LOCATION", "android.permission.ACCESS_COARSE_LOCATION"}, 123);
+                //requestLocationPermission();
             }
             this.locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
             this.isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);

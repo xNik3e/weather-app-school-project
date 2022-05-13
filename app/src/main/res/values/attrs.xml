@@ -22,6 +22,11 @@
     </attr>
     <attr name="clearButtonWidth" format="dimension">
     </attr>
+    <attr name="dialogPreferenceStyle" format="reference">
+    </attr>
+
+    <attr name="preferenceStyle" format="reference">
+    </attr>
 
 
 

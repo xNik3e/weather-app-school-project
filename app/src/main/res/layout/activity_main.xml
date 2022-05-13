@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/ViewBackground"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
@@ -111,6 +112,7 @@
             android:id="@+id/gps_tip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:layout_below="@+id/toolbar"
             android:background="#4d000000">
 
@@ -137,8 +139,8 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:onClick="openGPSSettings"
                 android:text="@string/title_settings"
-                android:textColor="@color/text_primary_dark"
-                android:textAppearance="@style/control_text_style_title" />
+                android:textAppearance="@style/control_text_style_title"
+                android:textColor="@color/text_primary_dark" />
 
         </RelativeLayout>
 

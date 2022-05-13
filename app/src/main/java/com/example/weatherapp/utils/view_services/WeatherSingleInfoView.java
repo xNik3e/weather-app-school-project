@@ -44,7 +44,7 @@ public class WeatherSingleInfoView extends LinearLayout {
         return this;
     }
     public void inflateView(Context context, AttributeSet attributeSet){
-        TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, WeatherSingleInfoViewAttr);
+        @SuppressLint("ResourceType") TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attributeSet, WeatherSingleInfoViewAttr);
         @SuppressLint("ResourceType") String string = obtainStyledAttributes.getString(1);
         @SuppressLint("ResourceType") String string1 = obtainStyledAttributes.getString(2);
         this.view = LayoutInflater.from(context).inflate(R.layout.weather_single_info_element, this);

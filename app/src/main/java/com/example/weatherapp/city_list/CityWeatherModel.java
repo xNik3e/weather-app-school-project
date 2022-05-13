@@ -8,10 +8,20 @@ import java.io.Serializable;
 public class CityWeatherModel implements Serializable {
     private CityModel cityModel;
     private OneCallWeatherResponse currentWeather;
+    private long lastUpdate;
+
+    public long getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(long lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
 
     public CityWeatherModel(CityModel cityModel, OneCallWeatherResponse currentWeather) {
         this.cityModel = cityModel;
         this.currentWeather = currentWeather;
+        lastUpdate = 0;
     }
 
     public CityWeatherModel() {

@@ -51,6 +51,8 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Vi
             holder.addedLabel.setVisibility(View.GONE);
     }
 
+
+
     @Override
     public int getItemCount() {
         return models.size();

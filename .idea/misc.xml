@@ -48,22 +48,28 @@
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/no_search_icon.xml" value="0.203" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ripple_city_tag.xml" value="0.2525" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/ripple_mask.xml" value="0.241" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/drawable/warning.xml" value="0.2755" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_about_me.xml" value="0.348731884057971" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_city_list.xml" value="0.33" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_main.xml" value="0.4537037037037037" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_search.xml" value="0.25" />
-        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/city_single_item.xml" value="0.6251778093883357" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/activity_settings.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/city_single_item.xml" value="0.3437037037037037" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/forecast_daily_weather.xml" value="0.34615384615384615" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/forecast_hourly_weather.xml" value="0.5" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_blank.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_forecast_weather.xml" value="0.33" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_hour_forecast.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_realtime_weather_detail.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_settings.xml" value="0.35260416666666666" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/fragment_weather_info.xml" value="0.3383152173913043" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/located_city.xml" value="0.15079365079365079" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/preference_material.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/searched_city.xml" value="0.1" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/searched_city_layout.xml" value="0.5" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/weather_info_layout.xml" value="0.4222222222222222" />
         <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/layout/weather_single_info_element.xml" value="0.5903614457831325" />
+        <entry key="..\:/Users/norbe/AndroidStudioProjects/WeatherApp/app/src/main/res/xml/setting_preference.xml" value="0.22" />
       </map>
     </option>
   </component>

@@ -1,33 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="@dimen/control_padding_space3"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:paddingBottom="@dimen/control_padding_space3">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clickable="true"
         android:id="@+id/whole_container"
+        android:layout_width="match_parent"
+        android:layout_height="135dp"
+        android:background="@android:color/transparent"
+        android:clickable="true"
         android:focusable="true"
-        app:cardCornerRadius="8dp"
-        android:background="@android:color/transparent">
+        app:cardCornerRadius="8dp">
 
         <RelativeLayout
+            android:id="@+id/front"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
-            android:id="@+id/front">
+            android:layout_height="135dp">
 
             <ImageView
+                android:id="@+id/city_theme"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/city_theme"
+                android:scaleType="centerCrop"
                 android:src="@drawable/bkg_cloudy_night"
-                android:scaleType="centerCrop"/>
+                android:tintMode="src_over" />
 
             <RelativeLayout
+                android:id="@+id/weather_details"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingStart="@dimen/control_margin2"
@@ -102,6 +104,20 @@
                         tools:text="Cloudy" />
                 </LinearLayout>
             </RelativeLayout>
+
+            <TextView
+                android:id="@+id/outdated_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/control_padding_space3"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/control_margin1"
+                android:textAppearance="@style/control_text_style_subtitle"
+                android:layout_marginBottom="@dimen/control_padding_space2"
+                android:textColor="@color/black"
+                android:visibility="invisible"
+                tools:text="Cloudy" />
         </RelativeLayout>
 
 

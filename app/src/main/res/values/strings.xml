@@ -20,16 +20,17 @@
     <string name="single_visibility">Visibility</string>
     <string name="single_pressure">Pressure</string>
     <string name="single_uv">UV</string>
+
     <string name="api_wind_direction_e">East wind</string>
     <string name="api_wind_direction_ene">ENE wind</string>
     <string name="api_wind_direction_ese">ESE wind</string>
     <string name="api_wind_direction_n">North wind</string>
-    <string name="api_wind_direction_na">No sustained wind direction</string>
+
     <string name="api_wind_direction_ne">NE wind</string>
     <string name="api_wind_direction_nne">NNE wind</string>
     <string name="api_wind_direction_nw">NW wind</string>
-    <string name="api_wind_direction_nwn">NNW wind</string>
-    <string name="api_wind_direction_rw">Swirling wind</string>
+    <string name="api_wind_direction_nnw">NNW wind</string>
+
     <string name="api_wind_direction_s">South wind</string>
     <string name="api_wind_direction_se">SE wind</string>
     <string name="api_wind_direction_sse">SSE wind</string>
@@ -38,6 +39,11 @@
     <string name="api_wind_direction_w">West wind</string>
     <string name="api_wind_direction_wnw">WNW wind</string>
     <string name="api_wind_direction_wsw">WSW wind</string>
+
+    <string name="api_wind_direction_rw">Swirling wind</string>
+    <string name="api_wind_direction_na">No sustained wind direction</string>
+
+
     <string name="no_cities">No Cities</string>
     <string name="settings_delete">Delete</string>
     <string name="select_cities">Select city</string>
@@ -62,6 +68,13 @@
     <string name="btn_close">Close</string>
     <string name="error">Error</string>
     <string name="locate_error">Some error occurred while trying to locate</string>
+    <string name="no_network_connection">Please check your internet connection.</string>
+    <string name="no_city_data">No city data to show, please add a city and retry</string>
+    <string name="ok_city">ADD CITY</string>
+    <string name="CANCEL">CANCEL</string>
+    <string name="OPEN">OPEN</string>
+    <string name="DISMISS">DISMISS</string>
+
 
     <string name="enum_weather_type_thunderstorm_200">Thunderstorm with light rain</string>
     <string name="enum_weather_type_thunderstorm_201">Thunderstorm with rain</string>
@@ -123,7 +136,21 @@
     <string name="enum_weather_type_clouds_802">Scattered clouds</string>
     <string name="enum_weather_type_clouds_803">Broken clouds</string>
     <string name="enum_weather_type_clouds_804">Overcast clouds</string>
-
+    <string name="temperature">Temperature</string>
+    <string name="celsius">Celsius - ℃</string>
+    <string name="fahrenheit">Fahrenheit - ℉</string>
+    <string name="meters_per_second">Meters per second - m/s</string>
+    <string name="kilometers_per_hour">Kilometers per hour - km/h</string>
+    <string name="foot_per_second">Feet per second - ft/s</string>
+    <string name="miles_per_hour">Miles per hour - mph</string>
+    <string name="wind">Wind</string>
+    <string name="precipitation">Precipitation</string>
+    <string name="visibility">Visibility</string>
+    <string name="millimeter">Millimeters - mm</string>
+    <string name="kilometers">Kilometers - km</string>
+    <string name="miles">Miles - mi</string>
+    <string name="inch">Inches - in</string>
+    <string name="about">About</string>
 
 
 </resources>
