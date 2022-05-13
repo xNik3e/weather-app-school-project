@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (OPTYPE == OPNOCITIES)
-                    finish();
+                    finishAffinity();
                 else {
                     dialog.cancel();
                 }
