@@ -115,11 +115,6 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
             pagerAdapter = new ViewPagerAdapter(this, liveDataListValue.size());
             viewPager.setAdapter(pagerAdapter);
             viewPager.setCurrentItem(position);
-            if(position == 0){
-                WeatherInfo fragmentShow = (WeatherInfo) getSupportFragmentManager().findFragmentByTag("f" + position);
-                if(fragmentShow!= null)
-                    fragmentShow.onResumeFragment();
-            }
 
 
             viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
