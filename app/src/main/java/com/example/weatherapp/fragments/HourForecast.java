@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,8 +15,9 @@ import android.view.ViewGroup;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.weather.HourForecastAdapter;
-import com.example.weatherapp.weather.model.HourlyWeather;
+import com.example.weatherapp.weather.model.HourlyFragmentModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class HourForecast extends Fragment {
@@ -23,8 +25,11 @@ public class HourForecast extends Fragment {
     private HourForecastAdapter hourForecastAdapter;
     private RecyclerView recyclerView;
     private Context context;
-    private List<HourlyWeather> hourlyWeatherList;
+    private static List<HourlyFragmentModel> hourlyWeatherList = new ArrayList<>();
 
+    public HourForecast(List<HourlyFragmentModel> models){
+        this.hourlyWeatherList.addAll(models);
+    }
 
     public HourForecast() {
         // Required empty public constructor
@@ -48,12 +53,11 @@ public class HourForecast extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recycler_view);
+        hourForecastAdapter = new HourForecastAdapter(context, hourlyWeatherList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false);
 
-        hourForecastAdapter = new HourForecastAdapter(context, null);
-
-
-
-
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(hourForecastAdapter);
 
     }
 }

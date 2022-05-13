@@ -53,7 +53,7 @@ public class RealtimeWeatherDetail extends Fragment {
         uv = view.findViewById(R.id.single_uv);
         pressure = view.findViewById(R.id.single_pressure);
 
-        precipitation_prob.setInfoLevel((current.getDaily().get(0).getPop() * 100) + "");
+        precipitation_prob.setInfoLevel(df.format(current.getDaily().get(0).getPop() * 100));
         precipitation_prob.setInfoUnit("%");
 
         Map<String, Double> params = WeatherUtils.convertPrecipitation(getContext(), (current.getDaily().get(0).getRain()));

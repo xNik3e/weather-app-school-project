@@ -29,6 +29,7 @@ import com.example.weatherapp.city_list.CityWeatherModel;
 import com.example.weatherapp.fragments.WeatherInfo;
 import com.example.weatherapp.utils.viewmodels.CityWeatherViewModel;
 import com.example.weatherapp.utils.viewmodels.ViewModelFactory;
+import com.example.weatherapp.utils.viewmodels.WeatherSearchViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
     private FragmentManager fragmentManager;
     private WeatherInfo weatherInfo;
     private CityWeatherViewModel cityWeatherViewModel;
+    private WeatherSearchViewModel weatherSearchViewModel;
     private List<CityWeatherModel> models = new ArrayList<>();
     private boolean isGit = false;
     private PagerAdapter pagerAdapter;
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
         cityWeatherViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CityWeatherViewModel.class);
+        weatherSearchViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(WeatherSearchViewModel.class);
 
         cityWeatherViewModel.init(this);
 
@@ -210,6 +213,9 @@ public class MainActivity extends AppCompatActivity implements WeatherInfo.Notif
         mainViewBackground.setBackgroundColor(getColor(colorId));
 
     }
+
+
+
     public void changeTextColor(int colorId){
 
     }
