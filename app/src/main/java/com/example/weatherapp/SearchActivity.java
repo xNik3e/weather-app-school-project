@@ -141,6 +141,7 @@ public class SearchActivity extends AppCompatActivity implements TextWatcher, Lo
         registerReceiver();
 
 
+
         models = new ArrayList<>();
         adapter = new CitySearchAdapter(this, models);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);

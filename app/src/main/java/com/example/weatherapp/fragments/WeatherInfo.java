@@ -180,6 +180,7 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
                             if(swipeRefreshLayout.isRefreshing()){
                                 swipeRefreshLayout.setRefreshing(false);
                                 Toast.makeText(getContext(), "Everything is up to date ^^", Toast.LENGTH_SHORT).show();
+                                notifyMainActivity.sendData(finalModel.getCityModel().getFreeFormAddress(), WeatherUtils.getLastUpdatedString(finalModel.getLastUpdate()), finalModel.getCityModel().isLocated());
                             }
                         }
                     }
