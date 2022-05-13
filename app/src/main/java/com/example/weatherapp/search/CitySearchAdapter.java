@@ -78,12 +78,10 @@ public class CitySearchAdapter extends RecyclerView.Adapter<CitySearchAdapter.Vi
 
     }
 
-
-
     public boolean isAdded(CityModel model){
         for(CityModel model1 : added){
-            if(model.getLat() == model1.getLat())
-                if(model.getLon() == model1.getLon())
+            if((model.getLat() == model1.getLat() && model.getLon() == model1.getLon())
+                    ||( model.getFreeFormAddress().equals(model1.getFreeFormAddress()) && model.getCountrySubdivision().equals(model1.getCountrySubdivision())))
                     return true;
         }
         return false;

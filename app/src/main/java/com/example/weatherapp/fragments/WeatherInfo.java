@@ -1,6 +1,7 @@
 package com.example.weatherapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.weatherapp.CityListActivity;
+import com.example.weatherapp.MainActivity;
 import com.example.weatherapp.R;
 import com.example.weatherapp.city_list.CityWeatherModel;
 import com.example.weatherapp.remote.apis.ApiParams;
@@ -37,6 +40,7 @@ import com.example.weatherapp.remote.model.one_call_current_weather.HourlyItem;
 import com.example.weatherapp.remote.model.one_call_current_weather.OneCallWeatherResponse;
 import com.example.weatherapp.search.CityModel;
 import com.example.weatherapp.utils.EnumHelper;
+import com.example.weatherapp.utils.FragmentLifecycle;
 import com.example.weatherapp.utils.WeatherUtils;
 import com.example.weatherapp.utils.view_services.AlwaysMarqueeTextView;
 import com.example.weatherapp.utils.view_services.MyWeatherTemperatureView;
@@ -54,8 +58,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefreshListener, FragmentLifecycle {
 
+    private static final String TAG = "FRAGMENT";
     private SwipeRefreshLayout swipeRefreshLayout;
     private RelativeLayout relativeLayoutInfo;
     private NestedScrollView weatherScrollView;
@@ -93,12 +98,11 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
     private MutableLiveData<List<CityWeatherModel>> data = new MutableLiveData<>();
 
 
-
     public WeatherInfo(int position) {
         this.tabPosition = position;
     }
 
-    public WeatherInfo(){
+    public WeatherInfo() {
         // Required empty public constructor
     }
 
@@ -119,6 +123,7 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
         return inflater.inflate(R.layout.fragment_weather_info, container, false);
     }
 
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -130,7 +135,7 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
         LiveData<List<CityWeatherModel>> liveData = cityWeatherViewModel.getCityWeatherModels();
         List<CityWeatherModel> cityWeatherModelList = liveData.getValue();
 
-        if(cityWeatherModelList != null && !cityWeatherModelList.isEmpty()){
+        if (cityWeatherModelList != null && !cityWeatherModelList.isEmpty()) {
             models.clear();
             models.addAll(cityWeatherModelList);
         }
@@ -160,7 +165,7 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
         data.observe(getActivity(), new Observer<List<CityWeatherModel>>() {
             @Override
             public void onChanged(List<CityWeatherModel> modelList) {
-                if(modelList != null && modelList.size() == models.size())
+                if (modelList != null && modelList.size() == models.size())
                     cityWeatherViewModel.replaceCityData(modelList);
             }
         });
@@ -168,27 +173,27 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
         cityWeatherViewModel.getCityWeatherModels().observe(getActivity(), new Observer<List<CityWeatherModel>>() {
             @Override
             public void onChanged(List<CityWeatherModel> modelList) {
-                cityWeatherViewModel.saveCityData(getContext(), modelList);
-                cityWeatherViewModel.getIsUpdating().observe(getActivity(), new Observer<Boolean>() {
+                cityWeatherViewModel.saveCityData(context, modelList);
+                cityWeatherViewModel.getIsUpdating().observe((MainActivity) context, new Observer<Boolean>() {
                     @Override
                     public void onChanged(Boolean aBoolean) {
-                        if(aBoolean){
+                        if (aBoolean) {
                             //nothing
-                        }else{
+                        } else {
                             models.clear();
                             models.addAll(cityWeatherViewModel.getCityWeatherModels().getValue());
-                            if(swipeRefreshLayout.isRefreshing()){
+                            if (swipeRefreshLayout.isRefreshing()) {
                                 swipeRefreshLayout.setRefreshing(false);
                                 Toast.makeText(getContext(), "Everything is up to date ^^", Toast.LENGTH_SHORT).show();
-                                notifyMainActivity.sendData(finalModel.getCityModel().getFreeFormAddress(), WeatherUtils.getLastUpdatedString(finalModel.getLastUpdate()), finalModel.getCityModel().isLocated());
+                                Intent intent = new Intent(getActivity(), MainActivity.class);
+                                intent.putExtra("POSITION", tabPosition);
+                                startActivity(intent);
                             }
                         }
                     }
                 });
             }
         });
-
-
 
 
         WeatherEnum weatherEnum = EnumHelper.getResourcesByWeatherId(finalModel.getCurrentWeather().getCurrent().getWeather().get(0).getId());
@@ -199,17 +204,17 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
                 finalModel.getCurrentWeather().getCurrent().getSunrise());
         int drawableID = weatherEnum.getCityBackgroundWeatherResId(isDay);
         int colorId = weatherEnum.getTypes().getWeatherColorResId(isDay);
-        notifyMainActivity.changeBackground(drawableID,colorId);
+        notifyMainActivity.changeBackground(drawableID, colorId);
 
         Map<String, Double> params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getCurrent().getFeelsLike());
-        currentTemperature.setText("Feels like\n" + (int)WeatherUtils.getValue(params)+WeatherUtils.getKey(params));
+        currentTemperature.setText("Feels like\n" + (int) WeatherUtils.getValue(params) + WeatherUtils.getKey(params));
         currentWeatherType.setText(finalModel.getCurrentWeather().getCurrent().getWeather().get(0).getMain());
         params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getDaily().get(0).getTemp().getDay());
-        currentHighTemperature.setText((int)WeatherUtils.getValue(params)+"");
+        currentHighTemperature.setText((int) WeatherUtils.getValue(params) + "");
 
 
         params = WeatherUtils.convertTemp(getContext(), finalModel.getCurrentWeather().getDaily().get(0).getTemp().getNight());
-        currentLowTemperature.setText((int)WeatherUtils.getValue(params)+ WeatherUtils.getKey(params));
+        currentLowTemperature.setText((int) WeatherUtils.getValue(params) + WeatherUtils.getKey(params));
 
 
         List<DailyItem> dailyItems = new ArrayList<>();
@@ -219,22 +224,22 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
 
         List<Integer> dayTemp = new ArrayList<>();
         List<Integer> nightTemp = new ArrayList<>();
-        for(int i = 0; i < 6; i++){
-            dayTemp.add((int)dailyItems.get(i).getTemp().getDay());
-            nightTemp.add((int)dailyItems.get(i).getTemp().getNight());
+        for (int i = 0; i < 6; i++) {
+            dayTemp.add((int) dailyItems.get(i).getTemp().getDay());
+            nightTemp.add((int) dailyItems.get(i).getTemp().getNight());
         }
         weatherTempView.addData(dayTemp, nightTemp);
 
         hourlyFragmentModelList.clear();
 
-        for(HourlyItem h : finalModel.getCurrentWeather().getHourly()){
+        for (HourlyItem h : finalModel.getCurrentWeather().getHourly()) {
             HourlyFragmentModel tempModel = new HourlyFragmentModel();
             tempModel.setTemp(h.getTemp());
             tempModel.setDt(h.getDt());
             tempModel.setId(h.getWeather().get(0).getId());
             tempModel.setTYPE(NONE);
             hourlyFragmentModelList.add(tempModel);
-            if(hourlyFragmentModelList.size() == 26)
+            if (hourlyFragmentModelList.size() == 26)
                 break;
         }
 
@@ -302,6 +307,28 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
         }
     }
 
+    @Override
+    public void onPauseFragment() {
+        Log.i(TAG, "onPauseFragment()");
+
+    }
+
+    @Override
+    public void onResumeFragment() {
+        Log.i(TAG, "onResumeFragment()");
+        WeatherEnum weatherEnum = EnumHelper.getResourcesByWeatherId(finalModel.getCurrentWeather().getCurrent().getWeather().get(0).getId());
+        boolean isDay = EnumHelper.isDay(
+                finalModel.getCurrentWeather().getCurrent().getSunset(),
+                (int) finalModel.getCurrentWeather().getCurrent().getDt(),
+                finalModel.getCurrentWeather().getCurrent().getSunrise());
+        int drawableID = weatherEnum.getCityBackgroundWeatherResId(isDay);
+        int colorId = weatherEnum.getTypes().getWeatherColorResId(isDay);
+
+
+        notifyMainActivity.sendData(finalModel.getCityModel().getFreeFormAddress(), WeatherUtils.getLastUpdatedString(finalModel.getLastUpdate()), finalModel.getCityModel().isLocated());
+        notifyMainActivity.changeBackground(drawableID, colorId);
+    }
+
     public interface NotifyMainActivity {
         void sendData(String title, String updated, boolean isLocated);
         void changeBackground(int resId, int colorId);
@@ -316,4 +343,5 @@ public class WeatherInfo extends Fragment implements SwipeRefreshLayout.OnRefres
             data.setValue(updatedList);
         }
     }
+
 }
