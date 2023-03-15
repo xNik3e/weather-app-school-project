@@ -17,9 +17,9 @@ The application features a scrollable home screen that allows users to easily sw
 
 - Android
 - Java
-- Retrofit
-- OkHttp
-- Glide
+- [Retrofit](https://github.com/square/retrofit)
+- [OkHttp](https://github.com/square/okhttp)
+- [Glide](https://github.com/bumptech/glide)
 
 <h2>Gallery</h2>
 <div align="center">
